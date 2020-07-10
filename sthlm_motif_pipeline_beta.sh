@@ -72,6 +72,7 @@ do
 if [ $buffer != 0 ];then
   printf "...reducing buffered ("$buffer"bp) motif regions to only those in common w/ 0 \n"
   eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect -wa -a $outdir/$cell"_"$gene -b data/MotifPipeline/sthlm_motif_0_QCbeta/$cell"_"$gene " >  $outdir/red/$cell"_"$gene
+  rm $outdir/$cell"_"$gene
 fi
 done
 done
