@@ -22,7 +22,7 @@ Usage:
 Example:
   source /proj/relibs/relib00/conda/bin/activate
   source activate mypy3
-  python netZooPy/milipeed/benchmark/run_predScore.py -i data/MotifPipeline/sthlm_motif00QC -o data/MotifPipeline/test/sthlm_motif00QC/
+  python netZooPy/milipeed/benchmark/run_predScore.py -i data/MotifPipeline/sthlm_motif_5_QCbeta -o data/MotifPipeline/sthlm_motif_5_QCbeta/red/test
 """
 
 import sys
@@ -31,6 +31,7 @@ import getopt
 import tests
 from netZooPy.lioness.lioness import Lioness
 from netZooPy.milipeed.benchmark.predScore import predScore
+from netZooPy.milipeed.benchmark.predRegion import predRegion
 from netZooPy.milipeed.benchmark.buffer_distr_comp import buffer_distr_comp
 from netZooPy.milipeed.benchmark.plot_predScore import plot_predScore
 from netZooPy.milipeed.benchmark.plot_allPredScore import plot_allPredScore
@@ -86,28 +87,85 @@ def main(argv):
         print('all cell and TF combos')
 
     # Run panda
-    print('Start predScore ...')
-    predScore(indir,outdir,'mean',cell,TF)
+    print('Starting regional analysis ...')
+    RR,DD=predScore(indir,outdir,'mean',cell,TF,'N_Shore',None)
+    plot_predScore(outdir,outdir,'mean','auroc',RR,DD)
+    plot_allPredScore(outdir,'mean','auroc',RR,DD)
+    print('Finished '+RR+' '+DD)
+    RR,DD=predScore(indir,outdir,'mean',cell,TF,'S_Shore',None)
+    plot_predScore(outdir,outdir,'mean','auroc',RR,DD)
+    plot_allPredScore(outdir,'mean','auroc',RR,DD)
+    print('Finished '+RR+' '+DD)
+    RR,DD=predScore(indir,outdir,'mean',cell,TF,'OpenSea',None)
+    plot_predScore(outdir,outdir,'mean','auroc',RR,DD)
+    plot_allPredScore(outdir,'mean','auroc',RR,DD)
+    print('Finished '+RR+' '+DD)
+    RR,DD=predScore(indir,outdir,'mean',cell,TF,'N_Shelf',None)
+    plot_predScore(outdir,outdir,'mean','auroc',RR,DD)
+    plot_allPredScore(outdir,'mean','auroc',RR,DD)
+    print('Finished '+RR+' '+DD)
+##STILL NEED TO RUN
+    RR,DD=predScore(indir,outdir,'mean',cell,TF,'S_Shelf',None)
+    plot_predScore(outdir,outdir,'mean','auroc',RR,DD)
+    plot_allPredScore(outdir,'mean','auroc',RR,DD)
+    print('Finished '+RR+' '+DD)
+
+    RR,DD=predScore(indir,outdir,'mean',cell,TF,'Island',None)
+    plot_predScore(outdir,outdir,'mean','auroc',RR,DD)
+    plot_allPredScore(outdir,'mean','auroc',RR,DD)
+    print('Finished '+RR+' '+DD)
+    print('Finished regional analysis ...')
+    
+    print('Starting depth analysis ...')
+    RR,DD=predScore(indir,outdir,'mean',cell,TF,None,5)
+    plot_predScore(outdir,outdir,'mean','auroc',RR,DD)
+    plot_allPredScore(outdir,'mean','auroc',RR,DD)
+    print('Finished '+RR+' '+DD)
+    RR,DD=predScore(indir,outdir,'mean',cell,TF,None,10)
+    plot_predScore(outdir,outdir,'mean','auroc',RR,DD)
+    plot_allPredScore(outdir,'mean','auroc',RR,DD)
+    print('Finished '+RR+' '+DD)
+    RR,DD=predScore(indir,outdir,'mean',cell,TF,None,15)
+    plot_predScore(outdir,outdir,'mean','auroc',RR,DD)
+    plot_allPredScore(outdir,'mean','auroc',RR,DD)
+    print('Finished '+RR+' '+DD)
+    RR,DD=predScore(indir,outdir,'mean',cell,TF,None,20)
+    plot_predScore(outdir,outdir,'mean','auroc',RR,DD)
+    plot_allPredScore(outdir,'mean','auroc',RR,DD)
+    print('Finished '+RR+' '+DD)
+    print('Finished depth analysis ...')
+
+    # print('Start predRegion ...')
+    # predRegion(indir,outdir,cell,TF)
     # print('Start buffer_distr_comp ...')
     # buffer_distr_comp('mean',indir)
-    print('Start plot_predScore ...')
-    plot_predScore(outdir,outdir,'mean','auroc')
-    plot_predScore(outdir,outdir,'mean','aupr')
-    print('Start plot_allPredScore ...')
-    plot_allPredScore(outdir,'mean','auroc')
-    plot_allPredScore(outdir,'mean','aupr')
-    # print('All done!')
+    # print('Start plot_predScore ...')
     
-    print('Start predScore ...')
-    predScore(indir,outdir,'median',cell,TF)
-    # print('Start buffer_distr_comp ...')
-    # buffer_distr_comp('median',indir)
-    print('Start plot_predScore ...')
-    plot_predScore(outdir,outdir,'median','auroc')
-    plot_predScore(outdir,outdir,'median','aupr')
-    print('Start plot_allPredScore ...')
-    plot_allPredScore(outdir,'median','auroc')
-    plot_allPredScore(outdir,'median','aupr')
+    
+    
+    
+    
+    # plot_predScore(outdir,outdir,'mean','aupr')
+    # print('Start plot_allPredScore ...')
+    
+    
+    
+    
+    
+
+    # plot_allPredScore(outdir,'mean','aupr')
+    # # print('All done!')
+    
+    # print('Start predScore ...')
+    # predScore(indir,outdir,'median',cell,TF)
+    # # print('Start buffer_distr_comp ...')
+    # # buffer_distr_comp('median',indir)
+    # print('Start plot_predScore ...')
+    # plot_predScore(outdir,outdir,'median','auroc')
+    # plot_predScore(outdir,outdir,'median','aupr')
+    # print('Start plot_allPredScore ...')
+    # plot_allPredScore(outdir,'median','auroc')
+    # plot_allPredScore(outdir,'median','aupr')
     print('All done!')
 
 if __name__ == '__main__':

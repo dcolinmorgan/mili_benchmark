@@ -14,9 +14,9 @@ from pathlib import Path
 # import sklearn.svm as svm
 from scipy import stats
 
-def plot_allPredScore(directory,agg_meth='mean',method='auroc'):
+def plot_allPredScore(directory,agg_meth='mean',method='auroc',region=None,depth=None):
 	allbox = pd.DataFrame()
-	traces= glob.glob('data/MotifPipeline/**/red/test/'+agg_meth+'/*.txt',recursive = True)
+	traces= glob.glob('data/MotifPipeline/**/red/test/'+region+'/'+depth+'/*.txt',recursive = True)
 	indices = [i for i, s in enumerate(traces) if 'sthlm_'+method+'_meltbox' in s]
 
 
@@ -50,3 +50,4 @@ def plot_allPredScore(directory,agg_meth='mean',method='auroc'):
 
 	        plt.savefig(outdir+"/sthlm_"+cell+test+"_allbox_buff.png",dpi=300,bbox_inches = "tight")
 	        plt.close()
+	return

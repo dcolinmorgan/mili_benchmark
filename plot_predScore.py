@@ -13,11 +13,10 @@ from sklearn import metrics
 # import sklearn.svm as svm
 from scipy import stats
 
-def plot_predScore(indir,outdir,agg_meth='mean',measure='auroc'):
-
+def plot_predScore(indir,outdir,agg_meth='mean',measure='auroc',region=None,depth=None):
 	# table2=table
 	# table.to_csv('data/MotifPipeline/PRE_overall.txt')
-	aurocs=pd.read_table(indir+agg_meth+'/sthlm_PRE_overall.txt',sep=',',usecols=[1,2,3,4,5,6,7,8,18,19,20,21,22,23,24,25,26,27],names=['cell','TF','mo_auroc','wgbs_auroc','me_auroc','mo_aupr','wgbs_aupr','me_aupr',
+	aurocs=pd.read_table(indir+'/'+region+'/'+depth+'/sthlm_PRE_overall.txt',sep=',',usecols=[1,2,3,4,5,6,7,8,18,19,20,21,22,23,24,25,26,27],names=['cell','TF','mo_auroc','wgbs_auroc','me_auroc','mo_aupr','wgbs_aupr','me_aupr',
 		'rand_mo_auroc','rand_wgbs_auroc','rand_me_auroc','rand_mo_aupr','rand_wgbs_aupr','rand_me_aupr','tr_wg_auroc','tr_me_auroc','tr_wg_aupr','tr_me_aupr'])
 	aurocs=aurocs[aurocs.cell!='0']
 
@@ -143,10 +142,10 @@ def plot_predScore(indir,outdir,agg_meth='mean',measure='auroc'):
 	# Creates pandas DataFrame. 
 	df_ttest = pd.DataFrame(ttest, index =['A549','GM12878', 'HeLa', 'HepG2', 'K562','SKNSH']) 
 
-	df_ttest.to_csv(outdir+agg_meth+"/sthlm_"+measure+"_ttest.txt")
-	meltbox.to_csv(outdir+agg_meth+"/sthlm_"+measure+"_meltbox.txt",sep='\t')
+	df_ttest.to_csv(outdir+'/'+region+'/'+depth+"/sthlm_"+measure+"_ttest.txt")
+	meltbox.to_csv(outdir+'/'+region+'/'+depth+"/sthlm_"+measure+"_meltbox.txt",sep='\t')
 
 
-
+	return
 
 

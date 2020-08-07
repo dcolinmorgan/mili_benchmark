@@ -9,21 +9,38 @@ from pathlib import Path
 import warnings
 from sklearn import metrics
 
+
 warnings.filterwarnings('ignore')
 warnings.simplefilter('ignore')
 # import matplotlib.backends.backend_pdf
 table=[]
 tab=[]
 
-def predScore(indir='data/MotifPipeline/sthlm_motif1010',outdir='data/MotifPipeline/test/sthlm_motif1010/',agg_meth='mean',cell=None,TF=None):
+def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/MotifPipeline/sthlm_motif_5_QCbeta/red/test',agg_meth='mean',cell=None,TF=None,region=None,depth=None):
     traces= glob.glob(indir+'/*')
     traces = list(filter(lambda file: os.stat(file).st_size > 0, traces))
     WWW=3
     if traces is None:
         print('incompatible intersection directory')
         return
-    
-    Path(outdir+agg_meth).mkdir(parents=True, exist_ok=True)
+
+    if region is None and depth is None:
+        RR='all'
+        DD='all'
+        Path(outdir+'/'+RR+'/'+DD).mkdir(parents=True, exist_ok=True)
+    elif region is None and depth is not None:
+        RR='all'
+        DD=str(depth)
+        Path(outdir+'/'+RR+'/'+DD).mkdir(parents=True, exist_ok=True)
+    elif region is not None and depth is None:
+        DD='all'
+        RR=region
+        Path(outdir+'/'+RR+'/'+DD).mkdir(parents=True, exist_ok=True)
+    elif region is not None and depth is not None:
+        DD=str(depth)
+        RR=region
+        Path(outdir+'/'+RR+'/'+DD).mkdir(parents=True, exist_ok=True)
+
     # pdf = matplotlib.backends.backend_pdf.PdfPages("output.pdf")
     # X=np.random.randint(0,high=len(traces))
 
@@ -41,11 +58,16 @@ def predScore(indir='data/MotifPipeline/sthlm_motif1010',outdir='data/MotifPipel
         try:
             data=pd.read_csv(trace,sep='\t')
             if (data.shape[1])>15:
-                data=pd.read_csv(trace,sep='\t',usecols=[0,1,2,3,4,8,9,10,11,15,16],names=["chr", "start", "end",'weight','pval',"hits1",'W1','array','region','ChIPTF','gene'])
+                data=pd.read_csv(trace,sep='\t',usecols=[0,1,2,3,4,8,9,10,11,15,16],names=["chr", "start", "end",'weight','pval',"depth",'W1','array','region','ChIPTF','gene'])
+                if region is not None:# and  type(region) is not int:
+                    data=data[data['region']==region]
+                if depth is not None:# and  type(region) is int:
+                    data=data[data['depth']>depth]
+                # print('data read')
             elif(data.shape[1])<12:
-                data=pd.read_csv(trace,sep='\t',usecols=[0,1,2,4,10,11,12,13,14],names=["chr", "start", "end",'weight',"hits1",'W1','array','ChIPTF','gene'])
+                data=pd.read_csv(trace,sep='\t',usecols=[0,1,2,4,10,11,12,13,14],names=["chr", "start", "end",'weight',"depth",'W1','array','ChIPTF','gene'])
             else:
-                data=pd.read_csv(trace,sep='\t',usecols=[0,1,2,3,7,8,9,10,14],names=["chr", "start", "end",'weight',"hits1",'W1','array','location','ChIPTF'])
+                data=pd.read_csv(trace,sep='\t',usecols=[0,1,2,3,7,8,9,10,14],names=["chr", "start", "end",'weight',"depth",'W1','array','location','ChIPTF'])
 
             Col1=os.path.basename(trace).split('_')[0] #cell
             Col2=os.path.basename(trace).split('_')[1] #TF
@@ -101,7 +123,7 @@ def predScore(indir='data/MotifPipeline/sthlm_motif1010',outdir='data/MotifPipel
 
                 df=data.groupby([data.chr,data.start,data.end]).size().reset_index(name='counts')
             #     data = data.groupby([data.chr,data.start,data.end]).agg({'weight':'mean',"wgbs":'mean',"ChIPTF":'mean',"array":'min'})
-                data = data.groupby([data.chr,data.start,data.end]).agg({'weight':agg_meth,"wgbs":agg_meth,"ChIPTF":'max',"array":agg_meth,'hits1':'mean','W1':'mean'})
+                data = data.groupby([data.chr,data.start,data.end]).agg({'weight':agg_meth,"wgbs":agg_meth,"ChIPTF":'max',"array":agg_meth,'depth':'mean','W1':'mean'})
 
                 data=data.merge(df,on=['chr','start','end'])
 
@@ -183,7 +205,7 @@ def predScore(indir='data/MotifPipeline/sthlm_motif1010',outdir='data/MotifPipel
                                ''.format(rand_auc5),
                          color='xkcd:light orange', linestyle='-', linewidth=2)
         #         
-                dataxxx=data[((data['hits1']))>=10]
+                dataxxx=data[((data['depth']))>=10]
                 fpr, tpr, thresholds = metrics.roc_curve(dataxxx.ChIPTF, dataxxx.wgbs)
                 roc_auc2_tr=metrics.auc(fpr, tpr)
                 plt.plot(fpr, tpr, 
@@ -402,19 +424,20 @@ def predScore(indir='data/MotifPipeline/sthlm_motif1010',outdir='data/MotifPipel
                 column = Col1, Col2, Col3, Col4, Col10, Col5, Col6,Col11,Col16,Col20,Col21,Col9,Col13,Col17,Col14,Col15,Col18,Coll1,Coll2,Coll3,Coll4,Coll5,Coll6,Coll7,Coll8,Coll9,Coll10
 
     #             table.append(column)
-
-                np.transpose(pd.DataFrame((column))).to_csv(outdir+agg_meth+'/sthlm_PRE_overall.txt',mode='a')#,header=['cell','tf','mauroc','wauroc','meauroc','maupr','waupr','meaupr','size','max_hit','mo_length'])
+                print('printing for'+Col1+"_"+Col2+"with depth > "+DD+", only in "+RR)
+                np.transpose(pd.DataFrame((column))).to_csv(outdir+'/'+RR+'/'+DD+'/sthlm_PRE_overall.txt',mode='a')#,header=['cell','tf','mauroc','wauroc','meauroc','maupr','waupr','meaupr','size','max_hit','mo_length'])
             except ValueError:
                 pass
                 print('no match for '+Col1+"_"+Col2)
-                np.transpose(pd.DataFrame((column))).to_csv(outdir+agg_meth+'/sthlm_PRE_overall.txt',mode='a')#,header=['cell','tf','mauroc','wauroc','meauroc','maupr','waupr','meaupr','size','max_hit','mo_length'])
+                np.transpose(pd.DataFrame((column))).to_csv(outdir+'/'+RR+'/'+DD+'/sthlm_PRE_overall.txt',mode='a')#,header=['cell','tf','mauroc','wauroc','meauroc','maupr','waupr','meaupr','size','max_hit','mo_length'])
         if cell is not None:
             plt.show()
             break
+    return RR, DD
     #     plt.subplots_adjust(wspace=.4, hspace=.5)
     #     plt.show()
     # dataaaa=pd.concat(tab)
     # dataaaa.to_csv('data/MotifPipeline/encode_sthlm_df_TF2.txt')
     #         pd.DataFrame(table).to_csv('data/MotifPipeline/sthlm_PRE_overall_TF3.txt',mode='a',header=['cell','tf','mauroc','wauroc','meauroc','maupr','waupr','meaupr',
     # #                                                                               'mmcc','wmcc','memcc',
-    #                                                                               'size','max_hit','mo_length'])
+    #                                                                               'size','max_hit','mo_length'])/

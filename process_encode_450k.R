@@ -123,13 +123,9 @@ W1<-paste(wgbs$V1,wgbs$V2,wgbs$V3,sep="_")
 # Mo1<-read.csv('data/MotifPipeline/glassHG38.txt',sep='\t',header=FALSE)#,usecols=[0,1,2],sep='\t',names=['chr','start','end'])
 
 venn.plot <- venn.diagram(
-  x = list(
-    '    A. WGBS' = W1,
-    # motif = Mo1,
-    'C. ChIP ' = C1,
-    'B. meArray' = M1
-  ),
-  filename = "interX_Venn3.tiff",
+  x = list(W1,C1, M1),
+  filename = "interX_Venn3lickers2.svg",
+  imagetype='svg',
   col = "transparent",
   fill = c("blue", "pink", "orange"),
   alpha = 0.50,

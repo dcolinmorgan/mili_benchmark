@@ -1,6 +1,6 @@
 #!/bin/bash
 #$ -cwd
-## bash data/MotifPipeline/ENCODE/sthlm_motif_pipeline_beta.sh -b50 -c'A549 K562 GM12878 SKNSH HepG2 HeLa'
+## bash data/MotifPipeline/ENCODE/sthlm_motif_pipeline_beta.sh -b5000 -c'A549 K562 GM12878 SKNSH HepG2 HeLa'
 usage=""$sthlm_motif_pipeline" [-h] [-bco] -- function calling bedtools2 to calculate the intersect for ENCODE methylation benchmark with arbitrary buffer length
 
 where:
@@ -87,6 +87,7 @@ chmod +x netZooPy/netZooPy/milipeed/benchmark/run_predScore.py
 if [ $buffer != 0 ];then
   python netZooPy/netZooPy/milipeed/benchmark/run_predScore.py -i $outdir/red -o $outdir/red/test/
   find "data/MotifPipeline/sthlm_motif_"$buffer"_QCbeta/" -maxdepth 1 -type f -exec rm -rf {} \;
+  # find "data/MotifPipeline/sthlm_motif_10000_QCbeta/red/" -maxdepth 1 -type f -exec rm -rf {} \;
 else
     python netZooPy/netZooPy/milipeed/benchmark/run_predScore.py -i $outdir -o $outdir/red/test/
 fi
