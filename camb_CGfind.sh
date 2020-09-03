@@ -38,4 +38,3 @@ echo $CG $full $tf $gene #>> tmp3.txt
 rm -rf tmp.txt tmp2.txt tmp3.txt
 done
 
-M0952 SIX2
