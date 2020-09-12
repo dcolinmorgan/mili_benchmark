@@ -49,7 +49,7 @@ if [[ $* == *-g* ]];then
     motif_fmt='_1.02.txt'
     for cell in $cells
     do
-      cut -f3,4,5,7,9 $motifdir/$TF$motif_fmt | tail -n +2 > $outdir/benchmark_tmp/tmp1.txt
+      cut -f3,4,5,7,10 $motifdir/$TF$motif_fmt | tail -n +2 > $outdir/benchmark_tmp/tmp1.txt
 
       eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect -wa -wb -a $outdir/benchmark_tmp/tmp1.txt -b data/MotifPipeline/remap/"$cell"_spRE2020.txt" > $outdir/benchmark_tmp/tmp2.txt
       cat $outdir/benchmark_tmp/tmp2.txt | grep -i 'cg' > $outdir/benchmark_tmp/tmp3.txt
@@ -65,7 +65,7 @@ if [[ $* == *-g* ]];then
       
       echo $CG $nonCG $total $tf $gene $cell
       echo $CG $nonCG $total $tf $gene $cell  >> $outdir/benchmark_tmp/CGcont.txt
-      rm $outdir/benchmark_tmp/tmp3.txt $outdir/benchmark_tmp/tmp2.txt $outdir/benchmark_tmp/tmp4.txt $outdir/benchmark_tmp/tmp1.txt
+      # rm $outdir/benchmark_tmp/tmp3.txt $outdir/benchmark_tmp/tmp2.txt $outdir/benchmark_tmp/tmp4.txt $outdir/benchmark_tmp/tmp1.txt
 
     done
   done
@@ -79,7 +79,7 @@ else
 
     for cell in $cells
     do
-      cut -f3,4,5,7,9 $TF | tail -n +2 > $outdir/benchmark_tmp/tmp1.txt
+      cut -f3,4,5,7,10 $TF | tail -n +2 > $outdir/benchmark_tmp/tmp1.txt
 
       eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect -wa -wb -a $outdir/benchmark_tmp/tmp1.txt -b data/MotifPipeline/remap/"$cell"_spRE2020.txt" > $outdir/benchmark_tmp/tmp2.txt
       cat $outdir/benchmark_tmp/tmp2.txt | grep -i 'cg' > $outdir/benchmark_tmp/tmp3.txt
@@ -94,7 +94,7 @@ else
       
       echo $CG $nonCG $total $tf $gene $cell
       echo $CG $nonCG $total $tf $gene $cell  >> $outdir/benchmark_tmp/CGcont.txt
-      rm $outdir/benchmark_tmp/tmp3.txt $outdir/benchmark_tmp/tmp2.txt $outdir/benchmark_tmp/tmp4.txt $outdir/benchmark_tmp/tmp1.txt
+      # rm $outdir/benchmark_tmp/tmp3.txt $outdir/benchmark_tmp/tmp2.txt $outdir/benchmark_tmp/tmp4.txt $outdir/benchmark_tmp/tmp1.txt
 
     done
   done
