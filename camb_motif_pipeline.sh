@@ -16,11 +16,11 @@ while getopts ":h:c:g:o:" opt; do
        ;;
     c) cells="$OPTARG"
       ;;
-    g) genes="$OPTARG":-'all'
+    g) genes="$OPTARG" #:-'all'
       ;;
     o) outdir={OPTARG:-"../../../d/tmp/redmo/camb_motif"}
       ;;
-    \?) echo "Invalid option -$OPTARG" >&4
+    \?) echo "Invalid option -$OPTARG" >&3
       ;;
   esac
 done
@@ -55,6 +55,7 @@ if [[ $* == *-g* ]];then
       cat $outdir/benchmark_tmp/tmp2.txt | grep -i 'cg' > $outdir/benchmark_tmp/tmp3.txt
       cut -f4,8 $outdir/benchmark_tmp/tmp3.txt > $outdir/CG/$cell"_"$gene
 
+
       cat $outdir/benchmark_tmp/tmp2.txt | grep -i -v 'cg' > $outdir/benchmark_tmp/tmp4.txt
       cut -f4,8 $outdir/benchmark_tmp/tmp4.txt > $outdir/nonCG/$cell"_"$gene
 
@@ -63,7 +64,7 @@ if [[ $* == *-g* ]];then
       total=$(eval wc -l $outdir/benchmark_tmp/tmp2.txt| cut -f1 --delimiter=' ')
       
       echo $CG $nonCG $total $tf $gene $cell
-
+      echo $CG $nonCG $total $tf $gene $cell  >> $outdir/benchmark_tmp/CGcont.txt
       rm $outdir/benchmark_tmp/tmp3.txt $outdir/benchmark_tmp/tmp2.txt $outdir/benchmark_tmp/tmp4.txt $outdir/benchmark_tmp/tmp1.txt
 
     done
@@ -89,9 +90,10 @@ else
 
       CG=$(eval wc -l $outdir/CG/$cell"_"$gene | cut -f1 --delimiter=' ')
       nonCG=$(eval wc -l $outdir/nonCG/$cell"_"$gene | cut -f1 --delimiter=' ')
+      total=$(eval wc -l $outdir/benchmark_tmp/tmp2.txt| cut -f1 --delimiter=' ')
       
-      echo $CG $nonCg $tf $gene $cell
-
+      echo $CG $nonCG $total $tf $gene $cell
+      echo $CG $nonCG $total $tf $gene $cell  >> $outdir/benchmark_tmp/CGcont.txt
       rm $outdir/benchmark_tmp/tmp3.txt $outdir/benchmark_tmp/tmp2.txt $outdir/benchmark_tmp/tmp4.txt $outdir/benchmark_tmp/tmp1.txt
 
     done
