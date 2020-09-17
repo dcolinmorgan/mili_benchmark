@@ -100,12 +100,12 @@ find $outdir/red/ -size +5G -delete
 source /proj/relibs/relib00/conda/bin/activate
 source activate mypy3 ## install netZooPy into this pyenv
 chmod +x netZooPy/netZooPy/milipeed/benchmark/run_predScore.py 
-if [ $buffer != 0 ];then
-  python netZooPy/netZooPy/milipeed/benchmark/run_predScore.py -i $outdir/red -o $outdir/red/test/
+# if [ $buffer != 0 ];then
+#   python netZooPy/netZooPy/milipeed/benchmark/run_predScore.py -i $outdir/red -o $outdir/red/test/
   # find "data/MotifPipeline/camb_motif_"$buffer"_QCdelta/" -maxdepth 1 -type f -exec rm -rf {} \;
-else
-  python netZooPy/netZooPy/milipeed/benchmark/run_predScore.py -i $outdir -o $outdir/red/test/
-fi
+# else
+python mili_benchmark/run_cambPredScore.py -i $outdir -o $outdir/test/
+# fi
 rm -rf benchmark_tmp
 # find "data/MotifPipeline/camb_motif_20_QCdelta/" -maxdepth 2 -type f -exec rm -rf {} \;
 
