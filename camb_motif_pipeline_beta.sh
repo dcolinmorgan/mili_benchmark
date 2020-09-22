@@ -73,7 +73,7 @@ do
       printf "...adding +/-"$buffer" bp buffer around motif region for "$gene" in the "$cell" cell line \n"
       eval "~/../rekrg/Tools/bedtools2/bin/bedtools slop  -i $bench/overlap_tmpD_$cell"_"$buffer$out_fmt -g ~/../rekrg/Tools/bedtools2/genomes/human.hg38.genome -r "$buffer" -l "$buffer"" > $bench/overlap_tmpC_$cell"_"$buffer$out_fmt
       eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect -wao -a $bench/overlap_tmpC_"$cell"_"$buffer$out_fmt" -b data/MotifPipeline/remap/"$cell"_spRE2020.txt " >  $bench/overlap_tmpB_$cell"_"$buffer$out_fmt #$bench/$cell"_"$gene
-      sed -i.bak $'s/\t\t/\t/' $bench/overlap_tmpB_$cell"_"$buffer$out_fmt
+      sed -i.bak 's/\t\t/\t/' $bench/overlap_tmpB_$cell"_"$buffer$out_fmt
       cut -f1,2,3,4,5,11 $bench/overlap_tmpB_$cell"_"$buffer$out_fmt > $bench/overlap_tmpBB_$cell"_"$buffer$out_fmt
       eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect -wa -a $bench/overlap_tmpBB_$cell"_"$buffer$out_fmt -b $bench/overlap_tmpBB_$cell"_"0$out_fmt " >  $outdir/test/$cell"_"$gene
 
@@ -81,7 +81,7 @@ do
       printf "...no buffered motif for "$gene" in the "$cell" cell line \n"
       cat $bench/overlap_tmpD_$cell"_"$buffer$out_fmt > $bench/overlap_tmpC_$cell"_"$buffer$out_fmt
       eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect -wao -a $bench/overlap_tmpC_"$cell"_"$buffer$out_fmt" -b data/MotifPipeline/remap/"$cell"_spRE2020.txt " >  $bench/overlap_tmpB_$cell"_"$buffer$out_fmt #$bench/$cell"_"$gene
-      sed -i.bak $'s/\t\t/\t/' $bench/overlap_tmpB_$cell"_"$buffer$out_fmt
+      sed -i.bak 's/\t\t/\t/' $bench/overlap_tmpB_$cell"_"$buffer$out_fmt
       cut -f1,2,3,4,5,11 $bench/overlap_tmpB_$cell"_"$buffer$out_fmt > $bench/overlap_tmpBB_$cell"_"$buffer$out_fmt
     fi
     printf "intersecting buffered motif with "$gene" methyl-predictions in the "$cell" cell line \n"
