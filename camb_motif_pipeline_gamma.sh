@@ -39,7 +39,8 @@ me=$(eval "basename "$0" | cut -d . -f1")
 tfdb='data/MotifPipeline/ENCODE/Homo_sapiens_motifinfo.txt'
 motifdir='../rekrg/MotifScans/MotifScans/hg38/'
 motifs=$(ls $motifdir*)
-bench="../../../pc/redmo/data/MotifPipeline/"
+# bench="../../../pc/redmo/data/MotifPipeline/"
+bench="../../d/tmp/redmo/data/MotifPipeline/"
 bench=$bench$me$buffer
 
 # rm -rf bench
@@ -60,7 +61,7 @@ do
   printf "...intersecting methylation information with ChIP for the "$cell" cell line \n"
   eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect -wao -a $bench/overlap_tmpA_"$cell"_"$buffer".txt -b data/MotifPipeline/remap/"$cell"_spRE2020.txt " >  $bench/overlap_tmpB_$cell"_"$buffer$out_fmt #$bench/$cell"_"$gene
   sed -i.bak 's/\t\t/\t/' $bench/overlap_tmpB_$cell"_"$buffer$out_fmt
-  cut -f1,2,3,4,5,11 $bench/overlap_tmpB_$cell"_"$buffer$out_fmt > $bench/overlap_tmpBB_$cell"_"$buffer$out_fmt
+  cut -f1,2,3,4,5,6,11 $bench/overlap_tmpB_$cell"_"$buffer$out_fmt > $bench/overlap_tmpBB_$cell"_"$buffer$out_fmt
 # done
 # fi
 # for cell in $cells
