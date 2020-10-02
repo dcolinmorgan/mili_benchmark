@@ -15,12 +15,15 @@ warnings.filterwarnings('ignore')
 warnings.simplefilter('ignore')
 # import matplotlib.backends.backend_pdf
 
-    
-def cambPredScore(indir='../../pc/redmo/data/MotifPipeline/camb_motif_pipeline_gamma5'): #,outdir='../../pc/redmo/data/MotifPipeline/camb_motif_pipeline_gamma5'):
+
+def cambPredScore(indir='../../pc/redmo/data/MotifPipeline/camb_motif_pipeline_gamma5',TSS=None): #,outdir='../../pc/redmo/data/MotifPipeline/camb_motif_pipeline_gamma5'):
 
     traces = [log for log in glob.glob(indir+'/*') if not os.path.isdir(log)]
     aurocs = pd.DataFrame()
-    os.makedirs(indir+'/test')
+    if TSS is None:
+        TSS='all'
+        if not os.path.exists(indir+'/'+TSS):
+            os.makedirs(indir+'/'+TSS)
 
     for i,trace in enumerate(traces):
         # print(trace)
@@ -29,71 +32,80 @@ def cambPredScore(indir='../../pc/redmo/data/MotifPipeline/camb_motif_pipeline_g
         TF=combo.split('_')[1]
         cell=combo.split('_')[0]
     #     data=pd.read_csv(trace,sep='\t',names=['chr','start','end','pwm','CG','ChIPTF','array','location'])
-        data=pd.read_csv(trace,sep='\t',usecols=[0,1,2,3,9,10,11],names=["chr", "start", "end",'pwm',"W1",'array','ChIPTF'])
+        # if TSS is None:
+        #     data=pd.read_csv(trace,sep='\t',usecols=[0,1,2,3,9,10,11],names=["chr", "start", "end",'pwm',"W1",'array','ChIPTF'])
+            
+        # else:
+        try:
+            data=pd.read_csv(trace,sep='\t',usecols=[0,1,2,3,4,8,9,10,11,12,13],names=["chr", "start", "end",'pwm','CG','hits',"W1",'array','ChIPTF','body','TSS'])
+            data=data[data['TSS']==TSS]
 
-        Col1=os.path.basename(trace).split('_')[0] #cell
-        Col2=os.path.basename(trace).split('_')[1] #TF
-    # except:
-    #     pass
+            Col1=os.path.basename(trace).split('_')[0] #cell
+            Col2=os.path.basename(trace).split('_')[1] #TF
+        # except:
+        #     pass
 
-        table2=[]
-        tbl=[]
-        tmpTBL2=[]
-        tmpTBL=[]
-        table3=[]
-        tblC=[]
-        tmpTBLC=[]
-        data.pwm=(data.pwm-data.pwm.min())/(data.pwm.max()-data.pwm.min())
-        data=data.fillna(0)
-        data.ChIPTF=data.ChIPTF.replace('.',0)
-        # print(data.shape)
-        data.ChIPTF[(data.ChIPTF==Col2)]=1
-        data=data[(data.ChIPTF==0)|(data.ChIPTF==1)]
-        data.ChIPTF=pd.to_numeric(data.ChIPTF)
+            table2=[]
+            tbl=[]
+            tmpTBL2=[]
+            tmpTBL=[]
+            table3=[]
+            tblC=[]
+            tmpTBLC=[]
+            data.pwm=(data.pwm-data.pwm.min())/(data.pwm.max()-data.pwm.min())
+            data=data.fillna(0)
+            data.ChIPTF=data.ChIPTF.replace('.',0)
+            # print(data.shape)
+            data.ChIPTF[(data.ChIPTF==Col2)]=1
+            data=data[(data.ChIPTF==0)|(data.ChIPTF==1)]
+            data.ChIPTF=pd.to_numeric(data.ChIPTF)
 
-        if np.sum(data.ChIPTF)>5: # and np.sum(data_nonCG.ChIPTF)>5:
+            if np.sum(data.ChIPTF)>5: # and np.sum(data_nonCG.ChIPTF)>5:
 
-            plt.plot([0, 1], [0, 1], 'k--')
-            fpr, tpr, thresholds = metrics.roc_curve(data.ChIPTF, data.pwm)
-            roc_auc=metrics.auc(fpr, tpr)
-            plt.plot(fpr, tpr,
-                     label='pwm (area = {0:0.2f})'
-                         ''.format(roc_auc),
-                     color='b', linestyle=':', linewidth=4)
+                plt.plot([0, 1], [0, 1], 'k--')
+                fpr, tpr, thresholds = metrics.roc_curve(data.ChIPTF, data.pwm)
+                roc_auc=metrics.auc(fpr, tpr)
+                plt.plot(fpr, tpr,
+                         label='pwm (area = {0:0.2f})'
+                             ''.format(roc_auc),
+                         color='b', linestyle=':', linewidth=4)
 
-            fpr2, tpr2, thresholds = metrics.roc_curve(data.ChIPTF, 1-(data.W1/100))
-            roc_auc2=metrics.auc(fpr2, tpr2)
-            plt.plot(fpr2, tpr2,
-                     label='wgbs (area = {0:0.2f})'
-                           ''.format(roc_auc2),
-                     color='r', linestyle=':', linewidth=4)
+                fpr2, tpr2, thresholds = metrics.roc_curve(data.ChIPTF, 1-(data.W1/100))
+                roc_auc2=metrics.auc(fpr2, tpr2)
+                plt.plot(fpr2, tpr2,
+                         label='wgbs (area = {0:0.2f})'
+                               ''.format(roc_auc2),
+                         color='r', linestyle=':', linewidth=4)
 
-            fpr, tpr, thresholds = metrics.roc_curve(data.ChIPTF, 1-(data.array/100))
-            roc_auc3=metrics.auc(fpr, tpr)
-            plt.plot(fpr, tpr,
-                     label='array (area = {0:0.2f})'
-                         ''.format(roc_auc),
-                     color='g', linestyle=':', linewidth=4)
+                fpr, tpr, thresholds = metrics.roc_curve(data.ChIPTF, 1-(data.array/100))
+                roc_auc3=metrics.auc(fpr, tpr)
+                plt.plot(fpr, tpr,
+                         label='array (area = {0:0.2f})'
+                             ''.format(roc_auc),
+                         color='g', linestyle=':', linewidth=4)
 
 
 
-            plt.xlabel('False Positive Rate')
-            plt.ylabel('True Positive Rate')
-            plt.title('AUROC for '+TF+' in '+cell)
-            plt.legend(loc="best")
+                plt.xlabel('False Positive Rate')
+                plt.ylabel('True Positive Rate')
+                plt.title('AUROC for '+TF+' in '+cell)
+                plt.legend(loc="best")
 
-            plt.show()
+                plt.show()
 
-            Col1=cell
-            Col2=TF
-            Col3=roc_auc #motif auroc
-            Col4=roc_auc2
-            Col5=roc_auc3
-            column = [Col1, Col2, Col3, Col4,Col5]
-            column=np.transpose(pd.DataFrame((column)))
-            column.to_csv(indir+'/test/camb_PRE_window_methyl.txt',mode='a',header=False,index=False)
-            aurocs=pd.concat([aurocs,column],axis=0)
-            print("AUROC calculated for "+Col1+" in "+Col2)
+                Col1=cell
+                Col2=TF
+                Col6=TSS
+                Col3=roc_auc #motif auroc
+                Col4=roc_auc2
+                Col5=roc_auc3
+                column = [Col1, Col2, Col3, Col4,Col5,Col6]
+                column=np.transpose(pd.DataFrame((column)))
+                column.to_csv(indir+'/'+TSS+'/camb_PRE_window_methyl.txt',mode='a',header=False,index=False)
+                aurocs=pd.concat([aurocs,column],axis=0)
+                print("AUROC calculated for "+Col1+" in "+Col2)
+        except:
+            pass
 
     aurocs.columns=['cell','TF','pwm','wgbs','array']
     ##sum across cells and sort
@@ -108,6 +120,7 @@ def cambPredScore(indir='../../pc/redmo/data/MotifPipeline/camb_motif_pipeline_g
     del heat['count']
     del heat['mean']
     del heat['weight']
+    del heat['TSS']
 
     heat=pd.DataFrame(heat.to_records())
 
@@ -131,7 +144,7 @@ def cambPredScore(indir='../../pc/redmo/data/MotifPipeline/camb_motif_pipeline_g
     plt.colorbar(mappable, ax = [ax],orientation = 'horizontal',pad=.04) #.02 with 12x60, .03 for 12x40
     plt.xticks(rotation=30)
 
-    plt.savefig(indir+"/test/camb_auroc_heat.png",dpi=300,bbox_inches = "tight")
+    plt.savefig(indir+'/'+TSS+"/camb_auroc_heat.png",dpi=300,bbox_inches = "tight")
     plt.show
 
     print([(heat55['pwm-A549'].dropna().shape),(heat55['pwm-GM12878'].dropna().shape),(heat55['pwm-HeLa'].dropna().shape),(heat55['pwm-HepG2'].dropna().shape),(heat55['pwm-K562'].dropna().shape),(heat55['pwm-SKNSH'].dropna().shape)])
@@ -149,7 +162,7 @@ def cambPredScore(indir='../../pc/redmo/data/MotifPipeline/camb_motif_pipeline_g
                   size=2, color=".3", linewidth=0)
 
     g.set(ylim=(0, 1))
-    plt.savefig(indir+"/test/camb_auroc_box.png",dpi=300,bbox_inches = "tight")
+    plt.savefig(indir+'/'+TSS+"/camb_auroc_box.png",dpi=300,bbox_inches = "tight")
     # meltbox.to_csv(outdir+measure+"meltbox.txt")
 
     plt.show
@@ -178,8 +191,8 @@ def cambPredScore(indir='../../pc/redmo/data/MotifPipeline/camb_motif_pipeline_g
     # Creates pandas DataFrame. 
     df_ttest = pd.DataFrame(ttest, index =['A549','GM12878', 'HeLa', 'HepG2', 'K562','SKNSH']) 
 
-    df_ttest.to_csv(indir+"/test/camb_auroc_ttest.txt")
-    meltbox.to_csv(indir+"/test/camb_auroc_meltbox.txt",sep='\t')
+    df_ttest.to_csv(indir+'/'+TSS+"/camb_auroc_ttest.txt")
+    meltbox.to_csv(indir+'/'+TSS+"/camb_auroc_meltbox.txt",sep='\t')
 
 
 
@@ -187,7 +200,7 @@ def cambPredScore(indir='../../pc/redmo/data/MotifPipeline/camb_motif_pipeline_g
     indir='../../pc/redmo/data/MotifPipeline/**'
     outdir='../../pc/redmo/data/MotifPipeline'
     allbox = pd.DataFrame()
-    traces= glob.glob(indir+'/tmp/*.txt',recursive = True)
+    traces= glob.glob(indir+'/'+TSS+'/tmp/*.txt',recursive = True)
     indices = [i for i, s in enumerate(traces) if 'camb_auroc_meltbox' in s]
 
 
