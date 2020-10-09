@@ -1,6 +1,6 @@
 #!/bin/bash
 #$ -cwd
-## bash mili_benchmark/cbus_motif_pipeline_delta.sh -b0 -c'A549 K562 GM12878 SKNSH HepG2 HeLa' -o'../../../pc/redmo/data/MotifPipeline/'
+## bash mili_benchmark/cbus_motif_pipeline_delta.sh -b0 -c'SKNSH HepG2 HeLa' -o'../../../pc/redmo/data/MotifPipeline/'
 usage=""$camb_motif_pipeline" [-h] [-bco] -- function calling bedtools2 to calculate the intersect for ENCODE methylation benchmark with arbitrary buffer length
 
 where:
@@ -45,7 +45,7 @@ bench=$bench$me$buffer
 
 # rm -rf bench
 # mkdir bench
-rm -rf $bench
+# rm -rf $bench
 mkdir -p $bench/test
 # mkdir -p $bench/red
 # bench="benchmark_"

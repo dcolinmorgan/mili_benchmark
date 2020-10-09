@@ -45,7 +45,7 @@ bench=$bench$me$buffer
 
 # rm -rf bench
 # mkdir bench
-rm -rf $bench
+# rm -rf $bench
 mkdir -p $bench/test
 # mkdir -p $bench/red
 # bench="benchmark_"

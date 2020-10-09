@@ -64,7 +64,7 @@ write.table(annotation@listData$GencodeBasicV12_Group,'data/MotifPipeline/ENCODE
 
 # ##bash to format as bed file cd data/MotifPipeline/ENCODE/methyl_array/
 # paste chrb.txt startb.txt A-549b.txt R2island.txt gene_bodyE.txt gene_bodyF.txt| awk '{print $1,$2,$2+1,$4,$5,$6,$7}' OFS='\t'> A-549_MeArrayc.txt
-# paste chrb.txt startb.txt GM12878b.txt R2island.txt gene_bodyE.txt gene_bodyF.txt| awk '{print $1,$2,$2+1,$4,$5 $6 $7}' OFS='\t'> GM12878_MeArrayc.txt
+# paste chrb.txt startb.txt GM12878b.txt R2island.txt gene_bodyE.txt gene_bodyF.txt| awk '{print $1,$2,$2+1,$4,$5,$6,$7}' OFS='\t'> GM12878_MeArrayc.txt
 # paste chrb.txt startb.txt HeLa-S3b.txt R2island.txt gene_bodyE.txt gene_bodyF.txt| awk '{print $1,$2,$2+1,$4,$5,$6,$7}' OFS='\t'> HeLa-S3_MeArrayc.txt
 # paste chrb.txt startb.txt Hep-G2b.txt R2island.txt gene_bodyE.txt gene_bodyF.txt| awk '{print $1,$2,$2+1,$4,$5,$6,$7}' OFS='\t'> Hep-G2_MeArrayc.txt
 # paste chrb.txt startb.txt K562b.txt R2island.txt gene_bodyE.txt gene_bodyF.txt| awk '{print $1,$2,$2+1,$4,$5,$6,$7}' OFS='\t'> K-562_MeArrayc.txt
