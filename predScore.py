@@ -70,7 +70,7 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
                 data=pd.read_csv(trace,sep='\t',usecols=[0,1,2,3,7,8,9,10,14],names=["chr", "start", "end",'weight',"depth",'W1','array','location','ChIPTF'])
 
             Col1=os.path.basename(trace).split('_')[0] #cell
-            Col2=os.path.basename(trace).split('_')[1] #TF
+            Col2='CEBPA'#os.path.basename(trace).split('_')[1] #TF
         except:
             pass
 

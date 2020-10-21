@@ -1,7 +1,10 @@
 #!/bin/bash
 #$ -cwd
-## bash mili_benchmark/sthlm_depth_analysis.sh -i'data/MotifPipeline' -b'0 5 10 20 50 100 250 500 1000 5000 10000 50000' -c'A549 K562 GM12878 SKNSH HepG2 HeLa'
-usage=""$sthlm_depth_analysis" [-h] [-bco] -- function calling bedtools2 to calculate the intersect for ENCODE methylation benchmark with arbitrary buffer length
+## bash mili_benchmark/sthlm_depth_analysis.sh -i'data/MotifPipeline' -b'0' -c'A549 K562 GM12878 SKNSH HepG2 HeLa'
+## bash mili_benchmark/sthlm_depth_analysis.sh -i'../../pc/redmo/data/MotifPipeline' -b'0 5 10 20 50' -c'A549 K562 GM12878 SKNSH HepG2 HeLa'
+## bash mili_benchmark/sthlm_depth_analysis.sh -i'../../d/tmp/redmo/data/MotifPipeline' -b'100 250 500' -c'A549 K562 GM12878 SKNSH HepG2 HeLa'
+
+usage=""$camb_depth_analysis" [-h] [-bco] -- function calling bedtools2 to calculate the intersect for ENCODE methylation benchmark with arbitrary buffer length
 
 where:
   -h  show this help text
@@ -35,10 +38,19 @@ do
 	do
 		if [ $buffer != 0 ];then
 			printf "$cell$buffer \t" >> $indir/buffer_analysis.txt
-			eval "cat "$indir"/sthlm_motif_"$buffer"_QCbeta/red/"$cell"*" |uniq -u | wc -l >> $indir/buffer_analysis.txt
+			# eval "cat "$indir"/sthlm_motif_"$buffer"_QCbeta/red/"$cell"*"  |cut -f1-14|uniq | wc -l >> $indir/buffer_analysis.txt
+
+			eval "cat "$indir"/camb_motif_pipeline_gamma"$buffer"/"$cell"*" |uniq | wc -l >> $indir/buffer_analysis.txt
+			# eval "cat "$indir"/camb_motif_pipeline_gamma"$buffer"/"$cell"*" |uniq | wc -l >> $indir/buffer_analysis.txt
 		else
 			printf "$cell$buffer \t" >> $indir/buffer_analysis.txt
-			eval "cat "$indir"/sthlm_motif_"$buffer"_QCbeta/"$cell"*" |uniq -u | wc -l >> $indir/buffer_analysis.txt
+			# eval "cat "$indir"/sthlm_motif_"$buffer"_QCbeta/"$cell"*" |cut -f1-14 |uniq  | wc -l >> $indir/buffer_analysis.txt
+			# cat $cell*  >> lbk_analysis_$cell
+			 # lbk_analysis_$cell |uniq  | wc -l >> $indir/buffer_analysis.txt
+
+
+			eval "cat "$indir"/camb_motif_pipeline_gamma"$buffer"/"$cell"*" |cut -f1-14|uniq | wc -l >> $indir/buffer_analysis.txt
+			# eval "cat "$indir"/camb_motif_"$buffer"_QCbeta/"$cell"*" |uniq | wc -l >> $indir/buffer_analysis.txt
 		fi
 	done
 done

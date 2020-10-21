@@ -1,6 +1,6 @@
 #!/bin/bash
 #$ -cwd
-## bash mili_benchmark/cbus_motif_pipeline_delta.sh -b0 -c'SKNSH HepG2 HeLa' -o'../../../pc/redmo/data/MotifPipeline/'
+## bash mili_benchmark/cbus_motif_pipeline_delta.sh -b0 -c'A549 K562 GM12878 SKNSH HepG2 HeLa' -o'../../../pc/redmo/data/MotifPipeline/'
 usage=""$camb_motif_pipeline" [-h] [-bco] -- function calling bedtools2 to calculate the intersect for ENCODE methylation benchmark with arbitrary buffer length
 
 where:
@@ -81,7 +81,6 @@ do
     fi
     printf "...intersecting buffered motif with "$gene" methyl-predictions in the "$cell" cell line \n"
     
-
     eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect -wa -wb -a $bench/overlap_tmpC_"$cell"_"$buffer".txt -b $bench/overlap_tmpBB_"$cell"_"$buffer".txt " > $bench/overlap_tmpCC_$cell"_"$buffer$out_fmt #bench/overlap_tmpE_$cell"_"$buffer$out_fmt
     
     if [ $buffer != 0 ];then
@@ -93,8 +92,10 @@ do
       cat $bench/overlap_tmpCC_$cell"_"$buffer$out_fmt $bench/overlap_tmpCC_$cell"_0"$out_fmt >  $bench/$cell"_"$gene
     fi
 
+    rm $bench/overlap_tmpD_$cell"_"$buffer$out_fmt $bench/overlap_tmpC_$cell"_"$buffer$out_fmt $bench/overlap_tmpCC_$cell"_"$buffer$out_fmt
+
 done
-rm $bench/overlap_tmpBB_$cell"_"$buffer$out_fmt$bench $bench/overlap_tmpB_$cell"_"$buffer$out_fmt
+rm $bench/overlap_tmpCC_$cell"_"$buffer$out_fmt
 done
 printf "intersected all cell line methyl-methyl-chip info successfully! \n \n"
 
