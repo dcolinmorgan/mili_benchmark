@@ -30,11 +30,11 @@ sys.path.append("/udd/redmo/netZooPy")
 import getopt
 import tests
 from netZooPy.lioness.lioness import Lioness
-from netZooPy.milipeed.benchmark.predScore import predScore
-from netZooPy.milipeed.benchmark.predRegion import predRegion
-from netZooPy.milipeed.benchmark.buffer_distr_comp import buffer_distr_comp
-from netZooPy.milipeed.benchmark.plot_predScore import plot_predScore
-from netZooPy.milipeed.benchmark.plot_allPredScore import plot_allPredScore
+from mili_benchmark.predScore import predScore
+from mili_benchmark.predRegion import predRegion
+from mili_benchmark.buffer_distr_comp import buffer_distr_comp
+from mili_benchmark.plot_predScore import plot_predScore
+from mili_benchmark.plot_allPredScore import plot_allPredScore
 
 
 

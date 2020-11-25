@@ -1,8 +1,12 @@
 #!/bin/bash
 #$ -cwd
-## bash mili_benchmark/lbk_depth_analysis.sh -i'../../../d/tmp/redmo/data/MotifPipeline/lbk_motif_pipeline_gamma0' -b'0' -c'A549 K562 GM12878 SKNSH HepG2 HeLa'
+## bash mili_benchmark/lbk_depth_analysis.sh -i'../../../d/tmp/redmo/data/MotifPipeline/lbk_motif_pipeline_gamma0' -b'0' -c'GM12878 SKNSH HepG2 HeLa'
 ## bash mili_benchmark/lbk_depth_analysis.sh -i'data/MotifPipeline/sthlm_motif_0_QCbeta' -b'0' -c'A549 K562 GM12878 SKNSH HepG2 HeLa'
 ## bash mili_benchmark/lbk_depth_analysis.sh -i'../../../d/tmp/redmo/data/MotifPipeline/cbus_motif_pipeline_delta0' -b'0' -c'A549 K562 GM12878 SKNSH HepG2 HeLa'
+
+## bash mili_benchmark/lbk_depth_analysis.sh -i'data/MotifPipeline/compare/sthlm_motif_0_QCbeta/gene' -b'0' -c'A549 K562 GM12878 SKNSH HepG2 HeLa'
+## bash mili_benchmark/lbk_depth_analysis.sh -i'../../d/tmp/redmo/data/MotifPipeline/cbus_motif_pipeline_delta0/gene' -b'0' -c'A549 K562 GM12878 SKNSH HepG2 HeLa'
+## bash mili_benchmark/lbk_depth_analysis.sh -i'../../d/tmp/redmo/data/MotifPipeline/camb_motif_pipeline_gamma100/gene' -b'0' -c'A549 K562 GM12878 SKNSH HepG2 HeLa'
 
 
 
@@ -47,8 +51,11 @@ done
 		# else
 		  # printf "$cell$buffer \t" >> $indir/depth_analysis.txt
 			# eval "cat "$indir"/sthlm_motif_"$buffer"_QCbeta/"$cell"*" |uniq -u | wc -l >> $indir/buffer_analysis.txt
-		  eval "cat "$indir"/"$cell"*" |uniq -u |wc -l > $indir/depth_analysis_$cell
+		  # eval "cat "$indir"/"$cell"*" |uniq -u |wc -l > $indir/depth_analysis_$cell
+      eval "cat "$indir"/"$cell"*" |cut -f6|sort|uniq |wc -l > $indir/gene_analysis_$cell
+
 			# eval "cat "$indir"/camb_motif_"$buffer"_QCbeta/"$cell"*" |uniq -u | wc -l >> $indir/buffer_analysis.txt
 		# fi
 	# done
-done
+  done
+      eval "cat "$indir"/*" |cut -f6|sort|uniq|wc -l  > $indir/gene_analysis_all

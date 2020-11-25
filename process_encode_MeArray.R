@@ -61,6 +61,9 @@ write.table(annotation@listData$UCSC_RefGene_Group,'data/MotifPipeline/ENCODE/me
 write.table(annotation@listData$GencodeBasicV12_Group,'data/MotifPipeline/ENCODE/methyl_array/gene_bodyB.txt',sep ='\t',quote = FALSE,dec = '.',row.names=FALSE,col.names = FALSE)
 write.table(annotation@listData$Name,'data/MotifPipeline/ENCODE/methyl_array/cpg.txt',sep ='\t',quote = FALSE,dec = '.',row.names=FALSE,col.names = FALSE)
 
+##bedtools intersect to add gene annotation to cg location info
+write.table(annotation@listData$Gene,'data/MotifPipeline/ENCODE/methyl_array/gene.txt',sep ='\t',quote = FALSE,dec = '.',row.names=FALSE,col.names = FALSE)
+
 ##python convert empty rows to 0s
 
 # ##bash to format as bed file cd data/MotifPipeline/ENCODE/methyl_array/

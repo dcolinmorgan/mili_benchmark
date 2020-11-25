@@ -1,7 +1,9 @@
 #!/bin/bash
 #$ -cwd
-## bash mili_benchmark/camb_motif_pipeline_gamma.sh -b5 -c'A549 K562 GM12878 SKNSH HepG2 HeLa' -o'../../../pc/redmo/data/MotifPipeline/'
-usage=""$camb_motif_pipeline" [-h] [-bco] -- function calling bedtools2 to calculate the intersect for ENCODE methylation benchmark with arbitrary buffer length
+## bash mili_benchmark/camb_motif_pipeline_gamma.sh -b20 -c'A549 K562 GM12878 SKNSH HepG2 HeLa' -o'../../../pc/redmo/data/MotifPipeline/'
+## bash mili_benchmark/camb_motif_pipeline_gamma.sh -b20 -c'A549 K562 GM12878 SKNSH HepG2 HeLa' -o'../../../d/tmp/redmo/data/subPipeTest/'
+
+usage=""$camb_motif_pipeline_gamma" [-h] [-bco] -- function calling bedtools2 to calculate the intersect for ENCODE methylation benchmark with arbitrary buffer length
 
 where:
   -h  show this help text
@@ -18,7 +20,7 @@ while getopts ":h:b:c:o:" opt; do
       ;;
     c) cells="$OPTARG"
       ;;
-    o) bench={OPTARG:-"data/MotifPipeline/camb_motif"$buffer"QC"}
+    o) bench="$OPTARG" #{OPTARG:-"data/MotifPipeline/camb_motif"$buffer"QC"}
       ;;
     \?) echo "Invalid option -$OPTARG" >&3
       ;;
@@ -27,12 +29,13 @@ done
 if [ $buffer != 0 ];then
   printf "User has opted to buffer the motif region with +/- "$buffer" bp \n"
 else
-    printf "intersection running for CG content analysis without added buffer around motif \n"
+  printf "intersection running for CG content analysis without added buffer around motif \n"
 fi
 
 # buffer=0
 out_fmt='.txt'
-
+# be rempr00
+# cd /proj/remprs/rempr00
 # me=`basename "$0"` | cut -d . -f1
 me=$(eval "basename "$0" | cut -d . -f1")
 
@@ -40,8 +43,8 @@ tfdb='data/MotifPipeline/ENCODE/Homo_sapiens_motifinfo.txt'
 motifdir='../rekrg/MotifScans/MotifScans/hg38/'
 motifs=$(ls $motifdir*)
 # bench="../../../pc/redmo/data/MotifPipeline/"
-bench="../../d/tmp/redmo/data/MotifPipeline/"
-bench=$bench$me$buffer
+# bench="../../d/tmp/redmo/data/MotifPipeline/"
+bench=$bench$buffer
 
 # rm -rf bench
 # mkdir bench
@@ -53,15 +56,16 @@ mkdir -p $bench/test
 
 # if [ ! -d "$bench" ]; then
 # mkdir benchmark_$me$buffer
+# fi
 for cell in $cells
 do
   printf "...running wgbs intersection with array for the "$cell" cell line \n"
 
-  eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect  -wa -wb -a data/MotifPipeline/ENCODE/wgbsin/"$cell"both.txt -b data/MotifPipeline/ENCODE/methyl_array/crossQC/"$cell"_MeArrayHG38c.txt" |cut -f1,2,3,4,5,9,10 > $bench/overlap_tmpA_$cell"_"$buffer$out_fmt
+  eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect  -wa -wb -a data/MotifPipeline/ENCODE/wgbsin/"$cell"both.txt -b data/MotifPipeline/ENCODE/methyl_array/crossQC/"$cell"_MeArrayHG38c.txt" |cut -f1,2,3,4,5,9,10 > $bench/overlap_tmpBB_$cell"_"$buffer$out_fmt
   printf "...intersecting methylation information with ChIP for the "$cell" cell line \n"
-  eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect -wao -a $bench/overlap_tmpA_"$cell"_"$buffer".txt -b data/MotifPipeline/remap/"$cell"_spRE2020.txt " >  $bench/overlap_tmpB_$cell"_"$buffer$out_fmt #$bench/$cell"_"$gene
-  sed -i.bak 's/\t\t/\t/' $bench/overlap_tmpB_$cell"_"$buffer$out_fmt
-  cut -f1,2,3,4,5,6,11 $bench/overlap_tmpB_$cell"_"$buffer$out_fmt > $bench/overlap_tmpBB_$cell"_"$buffer$out_fmt
+  #eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect -wao -a $bench/overlap_tmpA_"$cell"_"$buffer".txt -b data/MotifPipeline/remap/"$cell"_spRE2020.txt " >  $bench/overlap_tmpB_$cell"_"$buffer$out_fmt #$bench/$cell"_"$gene
+  #sed -i.bak 's/\t\t/\t/' $bench/overlap_tmpB_$cell"_"$buffer$out_fmt
+  #cut -f1,2,3,4,5,6,11 $bench/overlap_tmpB_$cell"_"$buffer$out_fmt > $bench/overlap_tmpBB_$cell"_"$buffer$out_fmt
 # done
 # fi
 # for cell in $cells
@@ -69,47 +73,58 @@ do
   for TF in $motifs
   do
     tf=$(eval "echo "$TF" | cut -d / -f6| cut -d _ -f1")
-
     gene=$(awk -v pat=$tf '$1 ~ pat' $tfdb | cut -f 2)
+    [[ $gene == "SP3" ]] || [[ $gene == "SP4" ]] || [[ $gene == "ZBTB7B" ]] && continue
     cut -f3,4,5,7,10 $TF | tail -n +2 > $bench/overlap_tmpD_$cell"_"$buffer$out_fmt
     if [ $buffer != 0 ];then
       printf "...adding +/-"$buffer" bp buffer around motif region for "$gene" in the "$cell" cell line \n"
-      eval "~/../rekrg/Tools/bedtools2/bin/bedtools slop  -i $bench/overlap_tmpD_"$cell"_"$buffer".txt -g ~/../rekrg/Tools/bedtools2/genomes/human.hg38.genome -r "$buffer" -l "$buffer"" > $bench/overlap_tmpC_$cell"_"$buffer$out_fmt
+      eval "~/../rekrg/Tools/bedtools2/bin/bedtools slop  -i $bench/overlap_tmpD_"$cell"_"$buffer".txt -g ~/../rekrg/Tools/bedtools2/genomes/human.hg38.genome -b "$buffer"" > $bench/overlap_tmpC_$cell"_"$buffer$out_fmt
+      paste -d ' ' $bench/overlap_tmpC_$cell"_"$buffer$out_fmt $bench/overlap_tmpD_"$cell"_"$buffer".txt > $bench/overlap_tmpE_"$cell"_"$buffer".txt
+      
     else
       printf "...no buffered motif for "$gene" in the "$cell" cell line \n"
-      cat $bench/overlap_tmpD_$cell"_"$buffer$out_fmt > $bench/overlap_tmpC_$cell"_"$buffer$out_fmt
+      cat $bench/overlap_tmpD_$cell"_"$buffer$out_fmt > $bench/overlap_tmpE_$cell"_"$buffer$out_fmt
     fi
     printf "...intersecting buffered motif with "$gene" methyl-predictions in the "$cell" cell line \n"
     
 
-    eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect -wa -wb -a $bench/overlap_tmpC_"$cell"_"$buffer".txt -b $bench/overlap_tmpBB_"$cell"_"$buffer".txt " > $bench/overlap_tmpCC_$cell"_"$buffer$out_fmt #bench/overlap_tmpE_$cell"_"$buffer$out_fmt
+    eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect -wa -wb -a $bench/overlap_tmpE_"$cell"_"$buffer".txt -b $bench/overlap_tmpBB_"$cell"_"$buffer".txt " > $bench/overlap_tmpCC_$cell"_"$buffer$out_fmt #bench/overlap_tmpE_$cell"_"$buffer$out_fmt
     
     if [ $buffer != 0 ];then
     cut -f6,7,8 ../../../pc/redmo/data/MotifPipeline/camb_motif_pipeline_gamma0/$cell"_"$gene > $bench/tmp33.txt
-    printf "reducing buffered ("$buffer"bp) motif regions to only those in common w/ 0 \n"
-    eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect -wa -a $bench/overlap_tmpCC_"$cell"_"$buffer$out_fmt" -b $bench/tmp33.txt " >  $bench/$cell"_"$gene
-    rm $bench/overlap_tmpD_$cell"_"$buffer$out_fmt  $bench/overlap_tmpC_$cell"_"$buffer$out_fmt $bench/overlap_tmpCC_$cell"_"$buffer$out_fmt $bench/tmp33.txt
+    printf "reducing buffered ("$buffer"bp) motif regions to only those in common w/ 0 \n"//
+    
+    eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect -wa -a $bench/overlap_tmpCC_"$cell"_"$buffer$out_fmt" -b $bench/tmp33.txt " >  $bench/overlap_tmpFF_$cell"_"$gene
+    cut -f1,6,7,8,9,10,11,12,13,14,15,16,17 $bench/overlap_tmpFF_$cell"_"$gene >$bench/overlap_tmpF_$cell"_"$gene
+    eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect -wao -a $bench/overlap_tmpF_"$cell"_"$gene" -b data/MotifPipeline/remap/"$cell"_spRE2020.txt " >  $bench/overlap_tmpG_$cell"_"$gene  #$bench/$cell"_"$gene
+    sed -i.bak 's/\t\t/\t/' $bench/overlap_tmpG_$cell"_"$gene
+    # cut -f1,2,3,4,5,6,11 $bench/overlap_tmpB_$cell"_"$buffer$out_fmt > $bench/overlap_tmpBB_$cell"_"$buffer$out_fmt
+
+    rm $bench/overlap_tmpD_$cell"_"$buffer$out_fmt  $bench/overlap_tmpC_$cell"_"$buffer$out_fmt $bench/overlap_tmpCC_$cell"_"$buffer$out_fmt $bench/tmp33.txt $bench/overlap_tmpF_$cell"_"$gene $bench/overlap_tmpFF_$cell"_"$gene
     else
       cat $bench/overlap_tmpCC_$cell"_"$buffer$out_fmt $bench/overlap_tmpCC_$cell"_0"$out_fmt >  $bench/$cell"_"$gene
     fi
 
 done
 rm $bench/overlap_tmpBB_$cell"_"$buffer$out_fmt$bench $bench/overlap_tmpB_$cell"_"$buffer$out_fmt
+find $bench/test/ -size +10G -delete
+
 done
 printf "intersected all cell line methyl-methyl-chip info successfully! \n \n"
 
 
 # done
-# find $bench/test/ -size +5G -delete
 
 source /proj/relibs/relib00/conda/bin/activate
 source activate mypy3 ## install netZooPy into this pyenv
-chmod +x netZooPy/netZooPy/milipeed/benchmark/run_predScore.py 
+# chmod +x mili_benchmark/run_predScore.py 
+chmod +x run_camb.py 
+
 # if [ $buffer != 0 ];then
 #   python netZooPy/netZooPy/milipeed/benchmark/run_predScore.py -i $bench/red -o $bench/red/test/
   # find "data/MotifPipeline/camb_motif_"$buffer"_QCdelta/" -maxdepth 1 -type f -exec rm -rf {} \;
 # else
-python mili_benchmark/run_cambPredScore.py -i $bench -o $bench/test/
+python run_camb.py # -i $bench -o $bench/test/
 # fi
 # rm -rf $bench
 # find "data/MotifPipeline/camb_motif_20_QCdelta/" -maxdepth 2 -type f -exec rm -rf {} \;

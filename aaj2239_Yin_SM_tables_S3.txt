@@ -1,0 +1,675 @@
+TF name		Call	methyl-SELEX call	bisulfite call
+ALX3		MethylPlus	MethylPlus	low complexity motif
+CDX4		MethylPlus	MethylPlus	MethylPlus
+CDX4		MethylPlus	MethylPlus	MethylPlus
+CEBPB		MethylPlus	Little effect	weak MethylPlus
+CEBPE		MethylPlus	Little effect	weak MethylPlus
+CEBPG		MethylPlus	Little effect	weak MethylPlus
+EGR4		MethylPlus	Little effect	weak MethylPlus
+				weak MethylPlus
+EN1		MethylPlus	MethylPlus	low complexity motif
+EN2		MethylPlus	MethylPlus	low complexity motif
+ESR1		MethylPlus	MethylPlus	MethylPlus
+ESR1		MethylPlus	MethylPlus	MethylPlus
+FOXG1		MethylPlus	MethylPlus	low enrichment
+FOXJ3		MethylPlus	Little effect	weak MethylPlus
+GATA3		MethylPlus	Little effect	MethylPlus
+GATA5		MethylPlus	Little effect	MethylPlus
+GBX2		MethylPlus	MethylPlus	low complexity motif
+GRHL1		MethylPlus	Little effect	weak MethylPlus
+GSX2		MethylPlus	MethylPlus	low complexity motif
+HLF		MethylPlus	MethylMinus	weak MethylPlus
+HOXA1		MethylPlus	MethylPlus	low complexity motif
+HOXA10		MethylPlus	MethylPlus	MethylPlus
+HOXA10		MethylPlus	MethylPlus	weak MethylPlus
+HOXA11		MethylPlus	MethylPlus	MethylPlus
+HOXA13		MethylPlus	MethylPlus	MethylPlus
+HOXA13		MethylPlus	MethylPlus	MethylPlus
+HOXA2		MethylPlus	MethylPlus	low complexity motif
+HOXA4		MethylPlus	MethylPlus	low complexity motif
+HOXA5		MethylPlus	MethylPlus	low complexity motif
+HOXA5		MethylPlus	MethylPlus	low complexity motif
+HOXA6		MethylPlus	MethylPlus	low complexity motif
+HOXA7		MethylPlus	MethylPlus	low complexity motif
+HOXB1		MethylPlus	MethylPlus	low complexity motif
+HOXB13		MethylPlus	MethylPlus	MethylPlus
+HOXB2		MethylPlus	MethylPlus	low complexity motif
+HOXB5		MethylPlus	MethylPlus	low complexity motif
+HOXB5		MethylPlus	MethylPlus	low complexity motif
+HOXB6		MethylPlus	MethylPlus	low complexity motif
+HOXB7		MethylPlus	MethylPlus	low complexity motif
+HOXB8		MethylPlus	MethylPlus	low complexity motif
+HOXB9		MethylPlus	MethylPlus	MethylPlus
+HOXC10		MethylPlus	MethylPlus	MethylPlus
+HOXC10		MethylPlus	MethylPlus	weak MethylPlus
+HOXC11		MethylPlus	MethylPlus	MethylPlus
+HOXC11		MethylPlus	MethylPlus	weak MethylPlus
+HOXC12		MethylPlus	MethylPlus	MethylPlus
+HOXC13		MethylPlus	MethylPlus	MethylPlus
+HOXC4		MethylPlus	MethylPlus	low complexity motif
+HOXC8		MethylPlus	MethylPlus	low complexity motif
+HOXC9		MethylPlus	MethylPlus	MethylPlus
+HOXD1		MethylPlus	MethylPlus	low complexity motif
+HOXD10		MethylPlus	MethylPlus	MethylPlus
+HOXD11		MethylPlus	MethylPlus	MethylPlus
+HOXD12		MethylPlus	MethylPlus	weak MethylPlus
+HOXD13		MethylPlus	MethylPlus	MethylPlus
+HOXD3		MethylPlus	MethylPlus	low complexity motif
+HOXD4		MethylPlus	MethylPlus	low complexity motif
+HOXD8		MethylPlus	MethylPlus	low complexity motif
+HOXD9		MethylPlus	MethylPlus	MethylPlus
+IRF2		MethylPlus	Little effect	weak MethylPlus
+				weak MethylPlus
+IRF6		MethylPlus	Little effect	weak MethylPlus
+				weak MethylPlus
+IRX1		MethylPlus	MethylPlus	weak MethylPlus
+				weak MethylPlus
+				weak MethylPlus
+				MethylPlus
+IRX3		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+				MethylPlus
+				MethylPlus
+IRX5		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+				MethylPlus
+				MethylPlus
+ISX		MethylPlus	MethylPlus	low complexity motif
+ISX		MethylPlus	MethylPlus	low complexity motif
+KLF10		MethylPlus	MethylPlus	weak MethylPlus
+				weak MethylPlus
+KLF11		MethylPlus	Little effect	weak MethylPlus
+KLF12		MethylPlus	Little effect	weak MethylPlus
+KLF12		MethylPlus	MethylPlus	not available
+KLF13		MethylPlus	Little effect	weak MethylPlus
+KLF13		MethylPlus	Little effect	weak MethylPlus
+KLF14		MethylPlus	Little effect	weak MethylPlus
+KLF15		MethylPlus	MethylPlus	weak MethylPlus
+KLF16		MethylPlus	Little effect	weak MethylPlus
+KLF17		MethylPlus	MethylPlus	weak MethylPlus
+KLF6		MethylPlus	MethylPlus	weak MethylPlus
+LBX2		MethylPlus	MethylPlus	low complexity motif
+LHX4		MethylPlus	MethylPlus	low complexity motif
+LHX5		MethylPlus	MethylPlus	low complexity motif
+LHX6		MethylPlus	MethylPlus	low complexity motif
+LHX9		MethylPlus	MethylPlus	low complexity motif
+LHX9		MethylPlus	MethylPlus	low complexity motif
+LMX1A		MethylPlus	MethylPlus	low complexity motif
+LMX1B		MethylPlus	MethylPlus	low complexity motif
+MEIS2		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+MEIS3		MethylPlus	MethylPlus	MethylPlus
+				weak MethylPlus
+MSX1		MethylPlus	MethylPlus	low complexity motif
+MSX1		MethylPlus	MethylPlus	low complexity motif
+MSX2		MethylPlus	MethylPlus	low complexity motif
+MYF6		MethylPlus	Little effect	weak MethylPlus
+NANOG		MethylPlus	MethylPlus	low complexity motif
+NFAT5		MethylPlus	MethylPlus	weak MethylPlus
+NFATC1		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+NFATC1		MethylPlus	MethylPlus	not available
+NFATC2		MethylPlus	MethylPlus	weak MethylPlus
+				weak MethylPlus
+NFATC2		MethylPlus	MethylPlus	not available
+NFATC3		MethylPlus	MethylPlus	MethylPlus
+NFATC3		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+NFATC3		MethylPlus	MethylPlus	not available
+NKX2-3		MethylPlus	MethylPlus	low complexity motif
+NKX2-3		MethylPlus	MethylPlus	low complexity motif
+NKX2-5		MethylPlus	MethylPlus	low complexity motif
+NKX3-1		MethylPlus	MethylPlus	low complexity motif
+NKX3-2		MethylPlus	MethylPlus	low complexity motif
+NR1I3		MethylPlus	MethylPlus	MethylPlus
+NR2C1		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+NR2F1		MethylPlus	MethylPlus	MethylPlus
+NR2F6		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+NR2F6		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+NR3C2		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+PAX1		MethylPlus	Little effect	MethylPlus
+				MethylPlus
+				MethylPlus
+PAX2		MethylPlus	Little effect	MethylPlus
+				MethylPlus
+				MethylPlus
+PAX3		MethylPlus	Little effect	MethylPlus
+				weak MethylPlus
+PAX6		MethylPlus	Little effect	MethylPlus
+				MethylPlus
+PAX6		MethylPlus	Little effect	MethylPlus
+				MethylPlus
+PAX7		MethylPlus	Little effect and MethylMinus	MethylPlus
+				MethylPlus
+PAX8		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+				MethylPlus
+PAX9		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+				MethylPlus
+PBX1		MethylPlus	MethylPlus	MethylPlus
+PDX1		MethylPlus	MethylPlus	low complexity motif
+PKNOX1		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+PKNOX2		MethylPlus	MethylPlus	MethylPlus
+				weak MethylPlus
+POU2F2		MethylPlus	MethylPlus	MethylPlus
+POU2F3		MethylPlus	MethylPlus	low enrichment
+POU3F1		MethylPlus	MethylPlus	MethylPlus
+POU3F1		MethylPlus	MethylPlus	MethylPlus
+POU3F1		MethylPlus	MethylPlus	MethylPlus
+POU3F2		MethylPlus	MethylPlus	weak MethylPlus
+POU3F2		MethylPlus	MethylPlus	weak MethylPlus
+POU3F2		MethylPlus	MethylPlus	MethylPlus
+POU3F4		MethylPlus	MethylPlus	MethylPlus
+POU3F4		MethylPlus	MethylPlus	MethylPlus
+POU3F4		MethylPlus	MethylPlus	MethylPlus
+POU5F1		MethylPlus	MethylPlus	MethylPlus
+POU5F1		MethylPlus	MethylPlus	MethylPlus
+PPARD		MethylPlus	MethylPlus	MethylPlus
+PRDM4		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+				MethylPlus
+RARA		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+RARB		MethylPlus	MethylPlus	MethylPlus
+RARG		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+RFX5		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+RORB		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+RXRB		MethylPlus	MethylPlus	MethylPlus
+RXRG		MethylPlus	MethylPlus	MethylPlus
+SCRT1		MethylPlus	MethylPlus	MethylPlus
+SCRT2		MethylPlus	MethylPlus	MethylPlus
+SNAI1		MethylPlus	MethylPlus	MethylPlus
+SNAI1		MethylPlus	MethylPlus	weak MethylPlus
+SNAI2		MethylPlus	MethylPlus	weak MethylPlus
+SP1		MethylPlus	Little effect	weak MethylPlus
+SP2		MethylPlus	Little effect	MethylPlus
+TBX20		MethylPlus	MethylPlus	MethylPlus
+TFCP2		MethylPlus	Little effect	weak MethylPlus
+				MethylPlus
+TFCP2L1		MethylPlus	Little effect	weak MethylPlus
+				MethylPlus
+TGIF2LY		MethylPlus	MethylPlus	MethylPlus
+				weak MethylPlus
+THRB		MethylPlus	MethylPlus	not available
+UBP1		MethylPlus	Little effect	weak MethylPlus
+				weak MethylPlus
+UNCX		MethylPlus	MethylPlus	low complexity motif
+VSX1		MethylPlus	MethylPlus	low complexity motif
+VSX1		MethylPlus	MethylPlus	low complexity motif
+VSX2		MethylPlus	MethylPlus	low complexity motif
+VSX2		MethylPlus	MethylPlus	low complexity motif
+ZBTB20		MethylPlus	Little effect	weak MethylPlus
+ZNF12		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+ZNF174		MethylPlus	Little effect	MethylPlus
+				weak MethylPlus
+ZNF23		MethylPlus	Little effect	weak MethylPlus
+				weak MethylPlus
+				weak MethylPlus
+ZNF274		MethylPlus	Little effect	weak MethylPlus
+ZNF32		MethylPlus	Little effect	MethylPlus
+				MethylPlus
+ZSCAN31		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+				MethylPlus
+ZNF444		MethylPlus	Little effect	weak MethylPlus
+ZNF524		MethylPlus	Little effect	MethylPlus
+				MethylPlus
+ZNF713		MethylPlus	Little effect	MethylPlus
+				MethylPlus
+				MethylPlus
+ZNF740		MethylPlus	Little effect	weak MethylPlus
+ZNF771		MethylPlus	Little effect	weak MethylPlus
+ZNF771		MethylPlus	Little effect	weak MethylPlus
+ZNF784		MethylPlus	Little effect	MethylPlus
+ZNF821		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+ARNT2		MethylMinus	MethylMinus	MethylMinus
+ARNTL		MethylMinus	MethylMinus	MethylMinus
+ATF2		MethylMinus	MethylMinus	low enrichment
+ATF2		MethylMinus	MethylMinus	low enrichment
+ATF3		MethylMinus	MethylMinus	weak MethylMinus
+ATF3		MethylMinus	MethylMinus	weak MethylMinus
+ATF6		MethylMinus	Little effect	MethylMinus
+ATF6		MethylMinus	Little effect	MethylMinus
+ATF6B		MethylMinus	Little effect	MethylMinus
+ATF6B		MethylMinus	Little effect	MethylMinus
+ATF7		MethylMinus	MethylMinus	low enrichment
+BARHL2		MethylMinus	MethylMinus	low complexity motif
+BARHL2		MethylMinus	MethylMinus	low complexity motif
+BCL6		MethylMinus	MethylMinus	weak MethylMinus
+BCL6B		MethylMinus	MethylMinus	weak MethylMinus
+BHLHE40		MethylMinus	Little effect	MethylMinus
+BHLHE41		MethylMinus	Little effect	MethylMinus
+BSX		MethylMinus	MethylMinus	low complexity motif
+CREB1		MethylMinus	MethylMinus	weak MethylMinus
+CREB1		MethylMinus	MethylMinus	MethylMinus
+CREB3		MethylMinus	MethylMinus	MethylMinus
+CREB3		MethylMinus	MethylMinus	MethylMinus
+CREB3		MethylMinus	MethylMinus	not available
+CREB3L1		MethylMinus	Little effect	weak MethylMinus
+CREB3L1		MethylMinus	MethylMinus	low enrichment
+CREB3L1		MethylMinus	Little effect	weak MethylMinus
+CREB3L1		MethylMinus	MethylMinus	low enrichment
+CREB5		MethylMinus	MethylMinus	weak MethylMinus
+CREM		MethylMinus	MethylMinus	weak MethylMinus
+CUX1		MethylMinus	MethylMinus	low enrichment
+DMRTC2		MethylMinus	MethylMinus	weak MethylMinus
+E2F2		MethylMinus	Little effect	MethylMinus
+				MethylMinus
+				MethylMinus
+				MethylMinus
+E2F4		MethylMinus	MethylMinus	MethylMinus
+E2F7		MethylMinus	Little effect	MethylMinus
+ELF1		MethylMinus	MethylMinus	MethylMinus
+ELF2		MethylMinus	MethylMinus	MethylMinus
+ELF2		MethylMinus	MethylMinus	MethylMinus
+ELF3		MethylMinus	MethylMinus	MethylMinus
+ELF3		MethylMinus	MethylMinus	MethylMinus
+ELF4		MethylMinus	MethylMinus	MethylMinus
+ELF5		MethylMinus	MethylMinus	MethylMinus
+ELK1		MethylMinus	MethylMinus	MethylMinus
+ELK3		MethylMinus	MethylMinus	MethylMinus
+ELK3		MethylMinus	MethylMinus	MethylMinus
+ERG		MethylMinus	MethylMinus	MethylMinus
+ERG		MethylMinus	Little effect	MethylMinus
+				MethylMinus
+ERG		MethylMinus	MethylMinus	MethylMinus
+ERG		MethylMinus	Little effect	MethylMinus
+				MethylMinus
+ETS2		MethylMinus	MethylMinus	MethylMinus
+				MethylMinus
+ETV1		MethylMinus	MethylMinus	MethylMinus
+ETV2		MethylMinus	MethylMinus	MethylMinus
+ETV3		MethylMinus	MethylMinus	MethylMinus
+ETV3		MethylMinus	Little effect	MethylMinus
+				MethylMinus
+ETV4		MethylMinus	MethylMinus	MethylMinus
+ETV5		MethylMinus	MethylMinus	MethylMinus
+FEV		MethylMinus	MethylMinus	MethylMinus
+FLI1		MethylMinus	MethylMinus	MethylMinus
+FLI1		MethylMinus	Little effect	MethylMinus
+				weak MethylMinus
+FLI1		MethylMinus	MethylMinus	MethylMinus
+FLI1		MethylMinus	Little effect	MethylMinus
+				MethylMinus
+FOS		MethylMinus	MethylMinus	weak MethylMinus
+FOXP3		MethylMinus	MethylMinus	MethylMinus
+GABPA		MethylMinus	MethylMinus	MethylMinus
+GFI1		MethylMinus	MethylMinus	weak MethylMinus
+GLIS1		MethylMinus	Little effect and MethylMinus	weak MethylMinus
+				MethylMinus
+GLIS2		MethylMinus	Little effect and MethylMinus	weak MethylMinus
+				weak MethylMinus
+				weak MethylMinus
+GMEB1		MethylMinus	MethylMinus	MethylMinus
+				MethylMinus
+GMEB2		MethylMinus	Little effect	MethylMinus
+				MethylMinus
+HES1		MethylMinus	MethylMinus	MethylMinus
+				MethylMinus
+HES2		MethylMinus	MethylMinus	MethylMinus
+HES5		MethylMinus	MethylMinus	MethylMinus
+HES7		MethylMinus	MethylMinus	MethylMinus
+HEY1		MethylMinus	MethylMinus	weak MethylMinus
+HEY2		MethylMinus	MethylMinus	weak MethylMinus
+HEY2		MethylMinus	MethylMinus	MethylMinus
+HSF5		MethylMinus	MethylMinus	not available
+HSFY1		MethylMinus	MethylMinus	MethylMinus
+				MethylMinus
+HSFY1		MethylMinus	MethylMinus	MethylMinus
+				MethylMinus
+				MethylMinus
+				MethylMinus
+HSFY2		MethylMinus	MethylMinus	MethylMinus
+				MethylMinus
+				MethylMinus
+				MethylMinus
+HSFY2		MethylMinus	MethylMinus	MethylMinus
+				MethylMinus
+IRF7		MethylMinus	MethylMinus	weak MethylMinus
+				MethylMinus
+LEF1		MethylMinus	Little effect	weak MethylMinus
+				weak MethylMinus
+LEF1		MethylMinus	Little effect	weak MethylMinus
+				weak MethylMinus
+LIN28B		MethylMinus	MethylMinus	weak MethylMinus
+				MethylMinus
+				weak MethylMinus
+MAFF		MethylMinus	MethylMinus	low enrichment
+MAX		MethylMinus	MethylMinus	weak MethylMinus
+MAX		MethylMinus	MethylMinus	weak MethylMinus
+MBNL2		MethylMinus	Little effect	weak MethylMinus
+				weak MethylMinus
+MLX		MethylMinus	MethylMinus	MethylMinus
+MLX		MethylMinus	MethylMinus	weak MethylMinus
+MYBL2		MethylMinus	Little effect	weak MethylMinus
+				weak MethylMinus
+MYCN		MethylMinus	MethylMinus	MethylMinus
+				MethylMinus
+				weak MethylMinus
+ONECUT1		MethylMinus	MethylMinus	weak MethylMinus
+ONECUT1		MethylMinus	MethylMinus	weak MethylMinus
+ONECUT2		MethylMinus	MethylMinus	MethylMinus
+ONECUT2		MethylMinus	MethylMinus	MethylMinus
+				MethylMinus
+ONECUT2		MethylMinus	MethylMinus	MethylMinus
+ONECUT3		MethylMinus	MethylMinus	weak MethylMinus
+OVOL1		MethylMinus	Little effect	weak MethylMinus
+OVOL2		MethylMinus	Little effect	MethylMinus
+PAX3		MethylMinus	MethylMinus	not available
+PAX7		MethylMinus	MethylMinus	low complexity motif
+PROX1		MethylMinus	MethylMinus	low enrichment
+RUNX2		MethylMinus	MethylMinus	weak MethylMinus
+RUNX3		MethylMinus	MethylMinus	MethylMinus
+				MethylMinus
+RUNX3		MethylMinus	MethylMinus	MethylMinus
+				MethylMinus
+SOHLH2		MethylMinus	MethylMinus	MethylMinus
+SPDEF		MethylMinus	MethylMinus	MethylMinus
+SPDEF		MethylMinus	MethylMinus	MethylMinus
+				weak MethylMinus
+SPIB		MethylMinus	MethylMinus	MethylMinus
+SPIB		MethylMinus	MethylMinus	weak MethylMinus
+SREBF1		MethylMinus	MethylMinus	weak MethylMinus
+SREBF1		MethylMinus	MethylMinus	not available
+TCF4		MethylMinus	MethylMinus	weak MethylMinus
+TCF7L1		MethylMinus	Little effect	weak MethylMinus
+				weak MethylMinus
+TCFL5		MethylMinus	Little effect	MethylMinus
+				MethylMinus
+TFE3		MethylMinus	MethylMinus	weak MethylMinus
+TFEC		MethylMinus	MethylMinus	weak MethylMinus
+USF1		MethylMinus	MethylMinus	weak MethylMinus
+USF2		MethylMinus	MethylMinus	weak MethylMinus
+XBP1		MethylMinus	MethylMinus	weak MethylMinus
+XBP1		MethylMinus	MethylMinus	weak MethylMinus
+YY1		MethylMinus	MethylMinus	not available
+ZBED1		MethylMinus	MethylMinus	MethylMinus
+				MethylMinus
+ZBTB14		MethylMinus	MethylMinus	MethylMinus
+				MethylMinus
+				MethylMinus
+				weak MethylMinus
+ZBTB2		MethylMinus	Little effect	weak MethylMinus
+ZBTB7A		MethylMinus	Little effect	MethylMinus
+				weak MethylMinus
+ZBTB7B		MethylMinus	MethylMinus	MethylMinus
+ZNF460		MethylMinus	MethylMinus	MethylMinus
+				MethylMinus
+ZNF704		MethylMinus	Little effect	MethylMinus
+				MethylMinus
+BCL6		Little effect and MethylMinus	Little effect and MethylMinus	not available
+BCL6B		Little effect and MethylMinus	Little effect and MethylMinus	Little effect
+				MethylMinus
+CLOCK		MethylMinus and MethylPlus	MethylMinus and MethylPlus	weak MethylMinus
+				MethylPlus
+CREB3L1		MethylMinus and MethylPlus	MethylMinus and MethylPlus	not available
+CREB3L1		MethylMinus and MethylPlus	MethylMinus and MethylPlus	not available
+GLI2		Little effect and MethylMinus	Little effect and MethylMinus	Little effect
+				weak MethylMinus
+HSF2		MethylMinus and MethylPlus	MethylMinus and MethylPlus	MethylMinus
+				MethylPlus
+IRF4		Little effect and MethylPlus	MethylMinus	Little effect
+				weak MethylPlus
+IRF9		MethylPlus and Little effect	MethylMinus	weak MethylPlus
+				Little effect
+NPAS2		MethylMinus and MethylPlus	MethylMinus and MethylPlus	weak MethylMinus
+				MethylPlus
+PAX3		MethylMinus and Little effect	MethylMinus and Little effect	not available
+PAX7		MethylMinus and Little effect	MethylMinus and Little effect	not available
+YY2		MethylPlus and MethylMinus	MethylPlus and MethylMinus	weak MethylMinus
+				MethylPlus
+ZFP42		MethylPlus and MethylMinus	MethylPlus and MethylMinus	weak MethylMinus
+				MethylPlus
+ZNF343		Little effect and MethylPlus	Little effect and MethylPlus	Little effect
+				weak MethylPlus
+				Little effect
+ZNF345		MethylPlus and MethylMinus	MethylPlus and MethylMinus	MethylPlus
+				MethylMinus
+ZSCAN29		Little effect and MethylPlus	Little effect	weak MethylPlus
+				Little effect
+				MethylPlus
+				weak MethylPlus
+CEBPD		Little effect	Little effect	low enrichment
+E2F2		Little effect	Little effect	Little effect
+E2F3		Little effect	Little effect	Little effect
+E2F8		Little effect	Little effect	Little effect
+EGR1		Little effect	Little effect	Little effect
+				Little effect
+EGR2		Little effect	Little effect	Little effect
+				Little effect
+EGR3		Little effect	Little effect	Little effect
+				Little effect
+IRF5		Little effect	MethylMinus	Little effect
+				Little effect
+IRF5		Little effect	MethylMinus	Little effect
+				Little effect
+KLF17		Little effect	Little effect	not available
+KLF2		Little effect	Little effect	low enrichment
+KLF4		Little effect	Little effect	low enrichment
+MTF1		Little effect	Little effect	Little effect
+MYOD1		Little effect	Little effect	low enrichment
+MYOG		Little effect	Little effect	low enrichment
+NHLH1		Little effect	Little effect	low enrichment
+				low enrichment
+NHLH2		Little effect	Little effect	Little effect
+				Little effect
+NR2F1		MethylPlus	MethylPlus	low enrichment
+OSR1		Little effect	MethylMinus	Little effect
+PAX4		Little effect	Little effect	low enrichment
+PAX4		Little effect	Little effect	not available
+PAX4		Little effect	Little effect	not available
+RFX5		Little effect	Little effect	not available
+SP3		Little effect	Little effect	low enrichment
+TGIF2LX		MethylPlus	MethylPlus	low enrichment
+				low enrichment
+ZNF140		Little effect	Little effect	Little effect
+BATF3*		inconclusive	MethylMinus	weak MethylMinus
+BATF3*		inconclusive	MethylMinus	weak MethylPlus
+DBP*		inconclusive	MethylMinus	weak MethylPlus
+DBP*		inconclusive	MethylMinus	Little effect
+FOSB		inconclusive	MethylMinus	Little effect
+GCM1		inconclusive	MethylMinus	Little effect
+GCM2		inconclusive	MethylMinus	weak MethylPlus
+HSF1		inconclusive	MethylMinus and MethylPlus	Little effect
+				MethylPlus
+HSF5		inconclusive	MethylMinus	MethylPlus
+				MethylPlus
+				MethylPlus
+IRF3*		inconclusive	MethylMinus	weak MethylMinus
+				weak MethylMinus
+IRF3*		inconclusive	MethylMinus	MethylPlus
+				weak MethylPlus
+IRF8*		inconclusive	MethylMinus	weak MethylMinus
+				Little effect
+JDP2		inconclusive	MethylMinus	weak MethylPlus
+OSR2		inconclusive	MethylMinus	MethylPlus
+				MethylPlus
+YY1		inconclusive	MethylMinus and MethylPlus	MethylPlus
+				MethylPlus
+ZFP41		inconclusive	MethylMinus	MethylPlus
+				MethylPlus
+ZIC1*		inconclusive	MethylMinus	Little effect
+			MethylMinus	weak MethylMinus
+ZIC1*		inconclusive	MethylMinus	weak MethylPlus
+				Little effect
+ZIC3*		inconclusive	MethylMinus	weak MethylPlus
+				MethylMinus
+ZIC3*		inconclusive	MethylMinus	Little effect
+				weak MethylMinus
+ZIC4		inconclusive	MethylMinus	Little effect
+				weak MethylMinus
+ZIC5		inconclusive	MethylMinus	weak MethylPlus
+				
+ZNF177		inconclusive	MethylMinus	weak MethylPlus
+				Little effect
+ZNF597		inconclusive	MethylMinus and MethylPlus	MethylPlus
+				weak MethylPlus
+ZNF76		inconclusive	MethylMinus	weak MethylMinus
+				Little effect
+ZSCAN1		inconclusive	Little effect	MethylPlus
+				Little effect
+ZSCAN4		inconclusive	Little effect	MethylPlus
+				weak MethylPlus
+
+GATA3		MethylPlus	Little effect	MethylPlus
+GBX2		MethylPlus	MethylPlus	low complexity motif
+HOXD3		MethylPlus	MethylPlus	low complexity motif
+IRX5		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+				MethylPlus
+				MethylPlus
+ISX		MethylPlus	MethylPlus	low complexity motif
+KLF15		MethylPlus	MethylPlus	low enrichment
+LHX9		MethylPlus	MethylPlus	low complexity motif
+LHX9		MethylPlus	MethylPlus	low complexity motif
+NKX2-5		MethylPlus	MethylPlus	low complexity motif
+POU5F1		MethylPlus	MethylPlus	MethylPlus
+POU5F1		MethylPlus	MethylPlus	MethylPlus
+RXRG		MethylPlus	MethylPlus	MethylPlus
+SNAI1		MethylPlus	MethylPlus	MethylPlus
+ZSCAN31		MethylPlus	MethylPlus	MethylPlus
+				MethylPlus
+				MethylPlus
+CREB3		MethylMinus	MethylMinus	weak MethylMinus
+CREB3		MethylMinus	MethylMinus	weak MethylMinus
+CREB3		MethylMinus	MethylMinus	not available
+CREB3		MethylMinus	MethylMinus	weak MethylMinus
+CREB3		MethylMinus	MethylMinus	weak MethylMinus
+CREB3		MethylMinus	MethylMinus	not available
+CREB5		MethylMinus	MethylMinus	low enrichment
+ELF3		MethylMinus	MethylMinus	MethylMinus
+ELF5		MethylMinus	MethylMinus	weak MethylMinus
+FEV		MethylMinus	MethylMinus	MethylMinus
+FLI1		MethylMinus	MethylMinus	MethylMinus
+FLI1		MethylMinus	Little effect	MethylMinus
+				weak MethylMinus
+GMEB1		MethylMinus	MethylMinus	MethylMinus
+				MethylMinus
+HES5		MethylMinus	MethylMinus	MethylMinus
+SPIB		MethylMinus	MethylMinus	MethylMinus
+EGR3		Little effect	Little effect	Little effect
+				Little effect
+BATF3*		inconclusive	MethylMinus	Little effect
+DBP*		inconclusive	MethylMinus	Little effect
+GCM1*		inconclusive	MethylMinus	low enrichment
+IRF3*		inconclusive	MethylMinus	weak MethylPlus
+				Little effect
+IRF8*		inconclusive	MethylMinus	Little effect
+				Little effect
+YY1		inconclusive	MethylMinus and MethylPlus	MethylPlus
+				MethylPlus
+ZIC3		inconclusive	MethylMinus	weak MethylPlus
+				weak MethylMinus
+ZNF76		inconclusive	MethylMinus	MethylPlus
+				MethylPlus
+
+MNX1		MethylPlus	MethylPlus	
+BARHL1		MethylMinus	MethylMinus	
+DLX6		MethylPlus	MethylPlus	
+DLX4		MethylPlus	MethylPlus	
+DLX3		MethylPlus	MethylPlus	
+DLX5		MethylPlus	MethylPlus	
+NKX2-8		MethylPlus	MethylPlus	
+		MethylPlus	MethylPlus	
+VENTX		MethylMinus	MethylMinus	
+HOXB4		MethylPlus	MethylPlus	
+GSX1		MethylPlus	MethylPlus	
+MEOX1		Little effect	Little effect	
+MEOX2		Little effect	Little effect	
+HOXA9		MethylPlus	MethylPlus	
+CDX2		MethylPlus	MethylPlus	
+CDX1		MethylPlus	MethylPlus	
+EVX1		MethylPlus	MethylPlus	
+EVX2		MethylPlus	MethylPlus	
+ALX4		MethylPlus	MethylPlus	
+PRRX2		MethylPlus	MethylPlus	
+SHOX		MethylPlus	MethylPlus	
+PROP1		MethylPlus	MethylPlus	
+MIXL1		MethylPlus	MethylPlus	
+RAX		MethylPlus	MethylPlus	
+LHX1		MethylPlus	MethylPlus	
+SIX4		Little effect	Little effect	
+SIX1		Little effect	Little effect	
+SIX3		Little effect	Little effect	
+SIX6		Little effect	Little effect	
+HES6		MethylMinus	MethylMinus	
+SREBF2		MethylMinus	MethylMinus	
+		MethylMinus	MethylMinus	
+TFEB		MethylMinus	MethylMinus	
+TCF12		MethylMinus	MethylMinus	
+PTF1A		Little effect	Little effect	
+ASCL2		MethylMinus	MethylMinus	
+CREB3L4		MethylMinus	MethylMinus	
+		MethylMinus	MethylMinus	
+		MethylMinus	MethylMinus	
+BACH2		MethylMinus	MethylMinus	
+JUN		MethylMinus	MethylMinus	
+		MethylMinus	MethylMinus	
+JUND		MethylMinus	MethylMinus	
+		MethylMinus	MethylMinus	
+JUNB		MethylMinus	MethylMinus	
+FOSL1		MethylMinus	MethylMinus	
+		Little effect	Little effect	
+TEF		MethylMinus	MethylMinus	
+ATF4		MethylMinus	MethylMinus	
+MAFG		MethylMinus	MethylMinus	
+MAF		MethylMinus	MethylMinus	
+MAFA		MethylMinus	MethylMinus	
+ELK4		MethylMinus	MethylMinus	
+ETV7		MethylMinus	MethylMinus	
+		MethylMinus	MethylMinus	
+TFAP2E		MethylMinus	MethylMinus	
+		MethylMinus	MethylMinus	
+TFAP2B		MethylMinus	MethylMinus	
+TFAP2A		MethylMinus	MethylMinus	
+TFAP2C		MethylMinus	MethylMinus	
+E2F1		MethylMinus	MethylMinus	
+FOXN2		MethylMinus	MethylMinus	
+FOXL2		MethylPlus	MethylPlus	
+TCF7		MethylMinus	MethylMinus	
+SOX14		MethylMinus	MethylMinus	
+SOX12		MethylMinus	MethylMinus	
+HSF4		MehylMinus and MethylPlus	MehylMinus and MethylPlus	
+SMAD5		MethylPlus	MethylPlus	
+NR1I2		MethylPlus	MethylPlus	
+NR3C1		MethylPlus	MethylPlus	
+POU1F1		MethylPlus	MethylPlus	
+		MethylPlus	MethylPlus	
+POU6F1		MethylPlus	MethylPlus	
+NFATC4		MethylPlus	MethylPlus	
+		MethylPlus	MethylPlus	
+BCL11B		Little effect	Little effect	
+ZNF501		MethylMinus	MethylMinus	
+ZNF449		MethylMinus	MethylMinus	
+		Little effect	Little effect	
+ZNF396		Little effect	Little effect	
+		MethylMinus	MethylMinus	
+SP8		Little effect	Little effect	
+SP9		Little effect	Little effect	
+KLF3		MethylPlus	MethylPlus	
+		Little effect	Little effect	
+KLF5		Little effect	Little effect	
+GATA6		Little effect	Little effect	
+GLI3		Little effect and MethylMinus	Little effect and MethylMinus	
+SNAI3		MethylPlus	MethylPlus	
+ZNF385D		Little effect	Little effect	
+ZNF454		Little effect	Little effect	
+		Little effect	Little effect	
+ZNF684		MethylPlus	MethylPlus	
+ZBTB33		MethylPlus	MethylPlus	
+ZBTB12		Little effect	Little effect	
+		MethylMinus	MethylMinus	
+ZBTB37		MethylPlus	MethylPlus	
+CUX2		inconclusive	MethylPlus	
+				
