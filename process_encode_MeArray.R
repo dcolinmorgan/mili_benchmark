@@ -1,5 +1,5 @@
 library(minfi)
-BiocManager::install("minfiData")
+# BiocManager::install("minfiData")
 library(minfiData)
 library(IlluminaHumanMethylationEPICmanifest)#,
 library(IlluminaHumanMethylationEPICanno.ilm10b4.hg19)

@@ -1,5 +1,3 @@
-#!/bin/bash
-#$ -cwd
 ## bash mili_benchmark/camb_motif_pipeline_gamma.sh -b20 -c'A549 K562 GM12878 SKNSH HepG2 HeLa' -o'../../../pc/redmo/data/MotifPipeline/'
 ## bash mili_benchmark/camb_motif_pipeline_gamma.sh -b20 -c'A549 K562 GM12878 SKNSH HepG2 HeLa' -o'../../../d/tmp/redmo/data/subPipeTest/'
 
@@ -91,19 +89,21 @@ do
     eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect -wa -wb -a $bench/overlap_tmpE_"$cell"_"$buffer".txt -b $bench/overlap_tmpBB_"$cell"_"$buffer".txt " > $bench/overlap_tmpCC_$cell"_"$buffer$out_fmt #bench/overlap_tmpE_$cell"_"$buffer$out_fmt
     
     if [ $buffer != 0 ];then
-    cut -f6,7,8 ../../../pc/redmo/data/MotifPipeline/camb_motif_pipeline_gamma0/$cell"_"$gene > $bench/tmp33.txt
-    printf "reducing buffered ("$buffer"bp) motif regions to only those in common w/ 0 \n"//
-    
-    eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect -wa -a $bench/overlap_tmpCC_"$cell"_"$buffer$out_fmt" -b $bench/tmp33.txt " >  $bench/overlap_tmpFF_$cell"_"$gene
-    cut -f1,6,7,8,9,10,11,12,13,14,15,16,17 $bench/overlap_tmpFF_$cell"_"$gene >$bench/overlap_tmpF_$cell"_"$gene
-    eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect -wao -a $bench/overlap_tmpF_"$cell"_"$gene" -b data/MotifPipeline/remap/"$cell"_spRE2020.txt " >  $bench/overlap_tmpG_$cell"_"$gene  #$bench/$cell"_"$gene
-    sed -i.bak 's/\t\t/\t/' $bench/overlap_tmpG_$cell"_"$gene
-    # cut -f1,2,3,4,5,6,11 $bench/overlap_tmpB_$cell"_"$buffer$out_fmt > $bench/overlap_tmpBB_$cell"_"$buffer$out_fmt
+     cut -f6,7,8 ../../../pc/redmo/data/MotifPipeline/camb_motif_pipeline_gamma0/$cell"_"$gene > $bench/tmp33.txt
+     printf "reducing buffered ("$buffer"bp) motif regions to only those in common w/ 0 \n"//
 
-    rm $bench/overlap_tmpD_$cell"_"$buffer$out_fmt  $bench/overlap_tmpC_$cell"_"$buffer$out_fmt $bench/overlap_tmpCC_$cell"_"$buffer$out_fmt $bench/tmp33.txt $bench/overlap_tmpF_$cell"_"$gene $bench/overlap_tmpFF_$cell"_"$gene
-    else
-      cat $bench/overlap_tmpCC_$cell"_"$buffer$out_fmt $bench/overlap_tmpCC_$cell"_0"$out_fmt >  $bench/$cell"_"$gene
-    fi
+     eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect -wa -a $bench/overlap_tmpCC_"$cell"_"$buffer$out_fmt" -b $bench/tmp33.txt " >  $bench/overlap_tmpFF_$cell"_"$gene
+     cut -f1,6,7,8,9,10,11,12,13,14,15,16,17 $bench/overlap_tmpFF_$cell"_"$gene >$bench/overlap_tmpF_$cell"_"$gene
+    rm $bench/tmp33.txt $bench/overlap_tmpFF_$cell"_"$gene
+
+   else
+     cat $bench/overlap_tmpCC_"$cell"_"$buffer$out_fmt" > $bench/overlap_tmpF_$cell"_"$gene
+   fi
+   eval "~/../rekrg/Tools/bedtools2/bin/bedtools intersect -wao -a $bench/overlap_tmpF_"$cell"_"$gene" -b data/MotifPipeline/remap/"$cell"_spRE2020.txt " >  $bench/overlap_tmpG_$cell"_"$gene  #$bench/$cell"_"$gene
+   sed -i.bak 's/\t\t/\t/' $bench/overlap_tmpG_$cell"_"$gene
+   # cut -f1,2,3,4,5,6,11 $bench/overlap_tmpB_$cell"_"$buffer$out_fmt > $bench/overlap_tmpBB_$cell"_"$buffer$out_fmt
+
+   rm $bench/overlap_tmpD_$cell"_"$buffer$out_fmt   $bench/overlap_tmpCC_$cell"_"$buffer$out_fmt $bench/tmp33.txt $bench/overlap_tmpF_$cell"_"$gene 
 
 done
 rm $bench/overlap_tmpBB_$cell"_"$buffer$out_fmt$bench $bench/overlap_tmpB_$cell"_"$buffer$out_fmt
@@ -114,7 +114,8 @@ printf "intersected all cell line methyl-methyl-chip info successfully! \n \n"
 
 
 # done
-
+rm -rf *.bak
+rename "overlap_tmpG_" "" *
 source /proj/relibs/relib00/conda/bin/activate
 source activate mypy3 ## install netZooPy into this pyenv
 # chmod +x mili_benchmark/run_predScore.py 
@@ -128,4 +129,5 @@ python run_camb.py # -i $bench -o $bench/test/
 # fi
 # rm -rf $bench
 # find "data/MotifPipeline/camb_motif_20_QCdelta/" -maxdepth 2 -type f -exec rm -rf {} \;
+
 
