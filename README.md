@@ -21,7 +21,14 @@ IMPORTANT: bedtools must be installed in order to run. Please see https://bedtoo
 
 <space>\
 <space>
-  
+
+Clone current version & run from shell
+--------------------------------------------------
+```bash
+		git clone https://github.com/dcolinmorgan/mili_benchmark ~/src/mili_benchmark
+    bash camb_motif_pipeline_gamma.sh -b0 -c'A549 K562 GM12878 SKNSH HepG2 HeLa' -o'outdirXX'
+
+```
 
 This benchmark can be summarized by four main steps:
 
@@ -54,4 +61,13 @@ This benchmark can be summarized by four main steps:
 <space>\
 <space>
   
-Following this, the jupyter notebook scans output folders for these intersected files and processes AUROCs and figures
+Calculate & summarize AUROCs from intersection files
+--------------------------------------------------
+
+```python
+  mili_benchmark/run_predScore.py -i outdirXX -o outdirXX/test
+
+```
+  
+Following this, [the jupyter notebook](https://github.com/dcolinmorgan/mili_benchmark/blob/master/channing_methyl_benchmark.ipynb) processes AUROCs and figures
+
