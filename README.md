@@ -9,10 +9,6 @@ Authors: Daniel Morgan; Kimberly Glass
 <space>\
 <space>
 
-
-<space>\
-<space>
-
 Clone current version & run from shell
 --------------------------------------------------
 ```bash
@@ -22,24 +18,23 @@ Clone current version & run from shell
 ```
 
 This benchmark can be summarized by four main steps and takes four primary inputs, including the locations of:\
-  (1) potential transcription factor binding sites, which can be defined by position weight matrices mapped onto the DNA\
-  (2) 850k Methyl array data\
-  (3) WGBS methylation data\
-  (4) ChIP-seq data\
+  1. potential transcription factor binding sites, which can be defined by position weight matrices mapped onto the DNA\
+  1. 850k Methyl array data\
+  1. WGBS methylation data\
+  1. ChIP-seq data\
 
 The output are TF-cell specific intersections of these four data types which are read into jupyternotebooks for analysis.
 
 IMPORTANT: bedtools must be installed in order to run. Please see https://bedtools.readthedocs.io/ for more information. 
 
 1. *STEP 1*: Intersect WGBS with meArray per cell line
-
   i. LiftOver meArray to hg38\
   ii. Separate hg38 meme file into individual motif files (652)\
   iii. Run FIMO with threshold=0.00001 and auto-background\
   iv. Convert fimo-output to bedfile output\
  
-<space>\
-<space>
+    <space>\
+    <space>
   
 1. *STEP 2*: For every motif bedfile & for every cell line & for various window sizes:
 
