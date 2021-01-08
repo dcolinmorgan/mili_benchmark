@@ -19,10 +19,10 @@ Clone current version & run from shell
 ```
 
 This benchmark can be summarized by three main steps (numbered) and takes four primary inputs, including the locations of:
-  1. potential transcription factor binding sites, which can be defined by position weight matrices mapped onto the DNA
-  1. 850k Methyl array data
-  1. WGBS methylation data
-  1. ChIP-seq data
+  1. potential [transcription factor binding sites](https://genome.ucsc.edu/), which can be defined by position weight matrices mapped onto the DNA
+  1. [850k Methyl array data](https://www.encodeproject.org/matrix/?type=Experiment&status=released&award.project=ENCODE&files.platform.term_name=Illumina+Infinium+Methylation+EPIC+BeadChip&biosample_ontology.term_name=A549&biosample_ontology.term_name=K562&biosample_ontology.term_name=GM12878&biosample_ontology.term_name=HeLa-S3&biosample_ontology.term_name=HepG2&biosample_ontology.term_name=SK-N-SH&assay_title=DNAme+array)
+  1. [WGBS methylation data](https://www.encodeproject.org/matrix/?type=Experiment&status=released&assay_slims=DNA+methylation&biosample_ontology.classification=cell+line&assay_title=WGBS&biosample_ontology.term_name=A549&biosample_ontology.term_name=K562&biosample_ontology.term_name=GM12878&biosample_ontology.term_name=HeLa-S3&biosample_ontology.term_name=HepG2&biosample_ontology.term_name=SK-N-SH)
+  1. [ChIP-seq data](http://remap.univ-amu.fr/)
 
 The output are TF-cell specific intersections of these four data types which are read into jupyternotebooks for analysis. Several other steps provide checks against bias for supplemental figures (bullet points)
 
