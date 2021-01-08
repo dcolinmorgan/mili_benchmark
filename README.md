@@ -1,8 +1,10 @@
 # mili_benchmark
 
--work to predict TF binding via various methylation marks, for use in [MILIPEED](https://github.com/dcolinmorgan/netZooPy/tree/milipeed) project within [netZooPy](https://github.com/netZoo/netZooPy)
-
 Implementation of the methylation benchmark as input for MILIPEDE (Methyl-Informed LInk Priming to Integrate Epigenetic Determinants of Expression) network reconstruction approach.\
+
+
+Investigation to predict TF binding via various methylation marks, for use in [MILIPEED](https://github.com/dcolinmorgan/netZooPy/tree/milipeed) project within [netZooPy](https://github.com/netZoo/netZooPy)
+
 Authors: Daniel Morgan; Kimberly Glass
 
 <space>\
@@ -61,3 +63,9 @@ Among other things, these checks are performed herewithin:
     1. Compare mean/median/max/min CpG
 1. Compare full WGBS and only subset within array to ChIP, calculate AUROC
     1. threshold WGBS reads >10, calculate AUROC
+
+
+>Workflow figure from manuscript
+>--------------------------------------------------
+>![Figure 1. Intersection schema between data modalities](https://github.com/dcolinmorgan/mili_benchmark/blob/master/figures/motif_interx%20X%20link_calls_v5.png)\
+> __Figure 1. Intersection schema between data modalities.__ Schematic workflow of bedtools2 intersection calls to calculate the prediction accuracy. The original motif is used as the template, onto which methylation information is supplemented/overwritten to predict ChIP-seq binding activity, where possible. Intersections: 1. Motif to WGBS, 2. Motif-WGBS to methyl array, 3. Motif+WGBS+methyl to ChIP. This narrow view is then expanded by adding buffers before and after motif sites (H0A) and methyl sites (H0B).
