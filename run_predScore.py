@@ -22,14 +22,14 @@ Usage:
 Example:
   source /proj/relibs/relib00/conda/bin/activate
   source activate mypy3
-  python netZooPy/milipeed/benchmark/run_predScore.py -i data/MotifPipeline/sthlm_motif_5_QCbeta -o data/MotifPipeline/sthlm_motif_5_QCbeta/red/test
+  python netZooPy/milipede/benchmark/run_predScore.py -i data/MotifPipeline/sthlm_motif_5_QCbeta -o data/MotifPipeline/sthlm_motif_5_QCbeta/red/test
 """
 
 import sys
 sys.path.append("/udd/redmo/netZooPy") 
 import getopt
 import tests
-from netZooPy.lioness.lioness import Lioness
+# from netZooPy.lioness.lioness import Lioness
 from mili_benchmark.predScore import predScore
 from mili_benchmark.predRegion import predRegion
 from mili_benchmark.buffer_distr_comp import buffer_distr_comp
