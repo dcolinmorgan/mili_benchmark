@@ -105,12 +105,12 @@ printf "intersected all cell line methyl-methyl-chip info successfully! \n \n"
 
 source /proj/relibs/relib00/conda/bin/activate
 source activate mypy3 ## install netZooPy into this pyenv
-chmod +x netZooPy/netZooPy/milipeed/benchmark/run_predScore.py 
+chmod +x mili_benchmark/scripts/python/run_cambPredScore.py
 # if [ $buffer != 0 ];then
 #   python netZooPy/netZooPy/milipeed/benchmark/run_predScore.py -i $bench/red -o $bench/red/test/
   # find "data/MotifPipeline/camb_motif_"$buffer"_QCdelta/" -maxdepth 1 -type f -exec rm -rf {} \;
 # else
-python mili_benchmark/run_cambPredScore.py -i $bench -o $bench/test/
+python mili_benchmark/scripts/python/run_cambPredScore.py -i $bench -o $bench/test/
 # fi
 # rm -rf $bench
 # find "data/MotifPipeline/camb_motif_20_QCdelta/" -maxdepth 2 -type f -exec rm -rf {} \;
