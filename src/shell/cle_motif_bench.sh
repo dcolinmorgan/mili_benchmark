@@ -1,6 +1,6 @@
 #!/bin/bash
 #$ -cwd
-## bash mili_benchmark/scripts/shell/cle_motif_bench.sh -b100 -s400 -e500
+## bash mili_benchmark/scripts/shell/cle_motif_bench.sh -b0 -s1 -e100
 usage=""$cle_motif_bench" [-h] [-bseo] -- function calling bedtools2 to calculate the intersect for ENCODE methylation benchmark with arbitrary buffer length
 where:
   -h  show this help text
@@ -18,9 +18,9 @@ while getopts ":h:b:s:e:o:" opt; do
       ;;
     s) start="$OPTARG"
       ;;
-    e) end="$OPTARG" #{OPTARG:-"data/MotifPipeline/camb_motif"$buffer"QC"}
+    e) end="$OPTARG" 
       ;;
-    o) output="$OPTARG" #{OPTARG:-"data/MotifPipeline/camb_motif"$buffer"QC"}
+    o) output="$OPTARG" 
       ;;
     \?) echo "Invalid option -$OPTARG" >&3
       ;;
@@ -45,7 +45,7 @@ for tf in $motiffiles # ${motiffiles[@]:$start:$end} #
 do
   # TF=$(eval "echo "$tf" | cut -d / -f6| cut -d _ -f1")
   TF=$(eval "cut -f2 $tf"|head -2 | tail -1|cut -f1 -d _|sed 's/[)(]//g')
-  awk '{print($3,"\t",$4,"\t",$5,"\t",$7,"\t",$2)}' $tf |tail -n +2 > $output/$TF'_A.txt' #>mega_motif.txt
+  awk '{print($3,"\t",$4,"\t",$5,"\t",$7,"\t",$9,"\t",$2)}' $tf |tail -n +2 > $output/$TF'_A.txt' #>mega_motif.txt
   cut -f1 $output/$TF'_A.txt' -d _ > $output/$TF'_B.txt' # cut -f3,4,5,7,3 $tf
   tr -d ' ' < $output/$TF'_B.txt' > $output/$TF'_C.txt'
   awk  '$3!=""' $output/$TF'_C.txt' > $output/$TF'_D.txt'
@@ -63,14 +63,14 @@ do
   # cat GM12878_BS_Ch0.txt | tr "." 0 >GM12878_BS_Ch01.txt
 
   if [ $buffer != 0 ];then
-    printf "...adding +/-"$buffer" bp buffer around motif region for "$TF" \n"
-    eval "~/../../../../udd/rekrg/Tools/bedtools2/bin/bedtools slop  -i " $output/$TF"_TSS.txt -g ../rekrg/Tools/bedtools2/genomes/human.hg38.genome -r buffer -l buffer "> $output/$TF"_megaSlop_"$buffer".txt"
+    printf "adding +/-"$buffer" bp buffer around motif region for "$TF" \n"
+    eval "~/../../../../udd/rekrg/Tools/bedtools2/bin/bedtools slop  -i " $output/$TF"_TSS.txt -g ../rekrg/Tools/bedtools2/genomes/human.hg38.genome -r "$buffer" -l "$buffer" "> $output/$TF"_megaSlop_"$buffer".txt"
     
-    printf "intersecting buffered motif with "$TF" WGBS-predictions with "$buffer" bp buffer \n"
+    printf "...intersecting buffered motif with "$TF" WGBS-predictions with "$buffer" bp buffer \n"
     eval "~/../../../../udd/rekrg/Tools/bedtools2/bin/bedtools intersect -wao -a " $output/$TF"_megaSlop_"$buffer".txt -b ../../d/tmp/redmo/bench/GM12878_BS_Ch01.txt "> $output/$TF".txt"
     rm -rf $output"megaSlop_"$buffer"_B.txt"
   else
-    printf "intersecting buffered motif with "$TF" WGBS-predictions with 0 buffer \n"
+    printf "...intersecting buffered motif with "$TF" WGBS-predictions with 0bp buffer \n"
     eval "~/../../../../udd/rekrg/Tools/bedtools2/bin/bedtools intersect -wao -a " $output/$TF"_TSS.txt -b ../../d/tmp/redmo/bench/GM12878_BS_Ch01.txt "> $output/$TF".txt"
   fi
   rm -rf $output/$TF"_TSS.txt" $output/$TF"_megaSlop_"$buffer".txt" $output/$TF"_A.txt" $output/$TF"_B.txt" $output/$TF"_C.txt" $output/$TF"_D.txt" $output/$TF"_E.txt"

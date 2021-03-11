@@ -1,11 +1,11 @@
 # mili_benchmark
 
-Implementation of the methylation benchmark as input for MILIPEDE (Methyl-Informed LInk Priming to Integrate Epigenetic Determinants of Expression) network reconstruction approach.\
+Leveraging methylation information to infer TF binding
 
-
-Investigation to predict TF binding via various methylation marks, for use in [MILIPEED](https://github.com/dcolinmorgan/netZooPy/tree/milipeed) project within [netZooPy](https://github.com/netZoo/netZooPy)
-
-Authors: Daniel Morgan; Kimberly Glass
+__Background__: Position weight matrices (PWM) have been used to identify potential locations of transcription factor binding in the genome (motifs). However, this in silico model assumes many simplifications of environmental regulatory processes and does not routinely consider the epigenetic context necessary for TF binding. Furthermore, benchmark studies using ChIP-seq data have demonstrated only modest accuracy when using PWM-based motifs to infer in vivo TF binding. Here we investigate scoring motif locations with methylation information to more accurately infer TF binding. 
+__Results__: We intersected TF binding motif locations identified using PWMs with methylation information from both whole genome bisulfite and Illumina EPIC array data. We  used the methylation information for six cell lines to score potential TF binding locations and then compared with experimental data (ChIP-seq) to assess whether methylation information can be used to infer binding activity. Our results demonstrate that most TF binding is inhibited in the presence of methylation. This confirms several smaller case studies on the topic of individual TF binding (including NRF1, CTCF), as well as a larger study which infers binding from SELEX data. Finally, we explore how our approach can be expanded to allow for the inference of TF binding locations when methylation information is only proximally available, i.e. no exact bp intersection but allowing for a windowed intersection.
+__Conclusions__: Incorporating methylation data improves TF binding inference over standard motif binding profiles, i.e., PWM p-values, and does so in a cell-type specific manner. Although most TFs do not bind to methylated promoter regions, our analysis highlights several exceptions to this rule, indicating that the role of methylation in TF binding is likely cell-type and context specific.
+__Authors__: Daniel Morgan; Kimberly Glass
 
 <space>\
 <space>
@@ -57,7 +57,7 @@ Calculate & summarize AUROCs from intersection files
 
 ```
 
-Following this, [the jupyter notebook](https://github.com/dcolinmorgan/mili_benchmark/blob/master/v7_channing_methyl_benchmark.ipynb) processes AUROCs and figures
+Following this, [the jupyter notebook](https://github.com/dcolinmorgan/mili_benchmark/blob/master/notebook/v7_channing_methyl_benchmark.ipynb) processes AUROCs and figures
 
 Among other things, these checks are performed herewithin:
 1. Count multiple CpGs per motif region (varies per TF, ~15) with PWM hit
