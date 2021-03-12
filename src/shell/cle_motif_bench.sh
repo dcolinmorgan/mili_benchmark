@@ -81,7 +81,7 @@ done
 source /proj/relibs/relib00/conda/bin/activate
 source activate mypy3
 chmod +x mili_benchmark/scripts/python/milipede_red.py
-python mili_benchmark/scripts/python/milipede_red.py -i $output
+python mili_benchmark/scripts/python/milipede_red.py $output test
 
 
 ####TEST #####
