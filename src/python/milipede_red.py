@@ -63,7 +63,7 @@ def milipede_red(index,indir,outdir):
     TF=os.path.basename(tf)
     TF=TF.split('.')[0]
     print(TF," ",index)
-    data=pd.read_csv(tf,sep='\t',usecols=[0,1,2,3,4,5,8,12,13,14],
+    data=pd.read_csv(tf,sep='\t',usecols=[0,1,2,3,4,5,9,13,14,15],
                      names=["chr", "start", "end",'weight','cg','TF','gene','depth','W1','ChIPTF'],engine='python')
     data=data[data['W1']!='.']
     data['W1']=pd.to_numeric(data['W1'])
