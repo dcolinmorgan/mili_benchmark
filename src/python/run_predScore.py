@@ -30,11 +30,11 @@ sys.path.append("/udd/redmo/netZooPy")
 import getopt
 import tests
 # from netZooPy.lioness.lioness import Lioness
-from mili_benchmark.predScore import predScore
-from mili_benchmark.predRegion import predRegion
-from mili_benchmark.buffer_distr_comp import buffer_distr_comp
-from mili_benchmark.plot_predScore import plot_predScore
-from mili_benchmark.plot_allPredScore import plot_allPredScore
+from mili_benchmark.src.python.predScore import predScore
+from mili_benchmark.src.python.predRegion import predRegion
+from mili_benchmark.src.python.buffer_distr_comp import buffer_distr_comp
+from mili_benchmark.src.python.plot_predScore import plot_predScore
+from mili_benchmark.src.python.plot_allPredScore import plot_allPredScore
 
 
 
@@ -54,7 +54,7 @@ def main(argv):
     for opt, arg in opts:
         if opt in ('-h', '--help'):
             print(__doc__)
-            return 0
+            return 0z
         elif opt in ('-i', '--indir'):
             indir = arg
         elif opt in ('-o', '--outdir'):

@@ -1,4 +1,3 @@
-
 import glob, os
 import numpy as np
 from matplotlib import colors as mcolors
@@ -8,14 +7,11 @@ import seaborn as sns
 from pathlib import Path
 import warnings
 from sklearn import metrics
-
-
 warnings.filterwarnings('ignore')
 warnings.simplefilter('ignore')
 # import matplotlib.backends.backend_pdf
 table=[]
 tab=[]
-
 def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/MotifPipeline/sthlm_motif_5_QCbeta/red/test',agg_meth='mean',cell=None,TF=None,region=None,depth=None):
     traces= glob.glob(indir+'/*')
     traces = list(filter(lambda file: os.stat(file).st_size > 0, traces))
@@ -23,7 +19,6 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
     if traces is None:
         print('incompatible intersection directory')
         return
-
     if region is None and depth is None:
         RR='all'
         DD='all'
@@ -40,10 +35,8 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
         DD=str(depth)
         RR=region
         Path(outdir+'/'+RR+'/'+DD).mkdir(parents=True, exist_ok=True)
-
     # pdf = matplotlib.backends.backend_pdf.PdfPages("output.pdf")
     # X=np.random.randint(0,high=len(traces))
-
     for jac,trace in enumerate(traces):
         if cell is not None and TF is not None:
             indices = [i for i, s in enumerate(traces) if cell+'_'+TF in s]
@@ -68,12 +61,10 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
                 data=pd.read_csv(trace,sep='\t',usecols=[0,1,2,4,10,11,12,13,14],names=["chr", "start", "end",'weight',"depth",'W1','array','ChIPTF','gene'])
             else:
                 data=pd.read_csv(trace,sep='\t',usecols=[0,1,2,3,7,8,9,10,14],names=["chr", "start", "end",'weight',"depth",'W1','array','location','ChIPTF'])
-
             Col1=os.path.basename(trace).split('_')[0] #cell
             Col2=os.path.basename(trace).split('_')[1] #TF
         except:
             pass
-
         table2=[]
         tbl=[]
         tmpTBL2=[]
@@ -92,9 +83,7 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
     #         data=data[np.abs(data.c2-data.c3)<=1000]
             try:
                 data.weight=(data.weight-data.weight.min())/(data.weight.max()-data.weight.min())
-
             #     data=data[data.ChIPTF!='.']
-
                 data['wgbs']=data.W1/100
                 data.wgbs=1-data.wgbs
                 data.array=1-data.array
@@ -113,20 +102,15 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
             #     data3=data3[data3['weight']!=data3['wgbs']]
                 data3=data3.drop_duplicates()
                 df3=data.groupby([data3.chr,data3.start,data3.end,data3.weight,data3.wgbs]).size().reset_index(name='counts')
-
                 data4=data.copy()
             #     del data3['ChIPTF'],data3['gene']
             #     data3=data3[data3['weight']!=data3['wgbs']]
                 data4=data4.drop_duplicates()
                 df4=data.groupby([data4.chr,data4.start,data4.end,data4.array,data4.wgbs]).size().reset_index(name='counts')
-
-
                 df=data.groupby([data.chr,data.start,data.end]).size().reset_index(name='counts')
             #     data = data.groupby([data.chr,data.start,data.end]).agg({'weight':'mean',"wgbs":'mean',"ChIPTF":'mean',"array":'min'})
                 data = data.groupby([data.chr,data.start,data.end]).agg({'weight':agg_meth,"wgbs":agg_meth,"ChIPTF":'max',"array":agg_meth,'depth':'mean','W1':'mean'})
-
                 data=data.merge(df,on=['chr','start','end'])
-
                 ##make random bimodal distribution for comparison
                 down=np.floor(len(data.array)/2)
                 up=np.ceil(len(data.array)/2)
@@ -135,29 +119,23 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
                 z=np.concatenate((x,y),axis=None)
                 z[z>1]=1
                 z[z<0]=0
-
                 f= plt.figure(figsize=(8, 8))
-
             ## Plot all three value distributions fit to same 0-1 scale
                 plt.subplot(2, 2, 1)
         #         data.ChIPTF[data.ChIPTF!=0]=1
-
                 colors = ['motif','wgbs','array','ChIP']
                 plt.hist([pd.to_numeric(data['weight']),pd.to_numeric(data['wgbs']),pd.to_numeric(data['array']),pd.to_numeric(data['ChIPTF'])],alpha=.5,log=True,stacked=False,label=colors,color=['k','tab:blue','tab:orange','deeppink'])
                 plt.legend(loc="best")#,bbox_to_anchor=(1,1))
                 plt.xlabel('Link Weight')
                 plt.ylabel('Frequency')
                 plt.title('A. Freq of '+trace.split('/')[3]+'\n link weight')
-
             ## Plot scatter of WGBS and motif to ChIP
             #     plt.subplot(1, 5, 2)
             #     sns.scatterplot(data.wgbs,data.ChIPTF,label='wgbs',alpha=.5)
             #     sns.scatterplot(data.weight,data.ChIPTF,label='motif',alpha=.5,color='deeppink').set_title("ChIP vs Motif & wgbs")
-
             ## Plot all ROC curves
             ###PWM
         #         data.ChIPTF[data.ChIPTF!=0]=1
-
                 plt.subplot(2, 2, 3)
                 plt.plot([0, 1], [0, 1], 'k--')
                 fpr, tpr, thresholds = metrics.roc_curve(data.ChIPTF, data.weight)
@@ -166,7 +144,6 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
                          label='Motif (area = {0:0.2f})'
                                ''.format(roc_auc),
                          color='k', linestyle=':', linewidth=4)
-
                 rpwma=np.random.permutation(data.weight)
                 fpr, tpr, thresholds = metrics.roc_curve(data.ChIPTF,rpwma)
                 rand_auc=metrics.auc(fpr, tpr)
@@ -181,7 +158,6 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
                          label='WGBS (area = {0:0.2f})'
                                ''.format(roc_auc2),
                          color='tab:blue', linestyle=':', linewidth=4)
-
                 rwgbsa=np.random.permutation(data.wgbs)
                 fpr, tpr, thresholds = metrics.roc_curve(data.ChIPTF, rwgbsa)
                 rand_auc2=metrics.auc(fpr, tpr)
@@ -189,14 +165,12 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
                          label='shuf WGBS ({0:0.2f})'
                                ''.format(rand_auc2),
                          color='xkcd:light blue', linestyle='-', linewidth=2)
-
                 fpr, tpr, thresholds = metrics.roc_curve(data.ChIPTF, data.array)
                 roc_auc5=metrics.auc(fpr, tpr)
                 plt.plot(fpr, tpr,
                          label='MeArray (area = {0:0.2f})'
                                ''.format(roc_auc5),
                          color='tab:orange', linestyle=':', linewidth=4)
-
                 rarray=np.random.permutation(data.array)
                 fpr, tpr, thresholds = metrics.roc_curve(data.ChIPTF, rarray)
                 rand_auc5=metrics.auc(fpr, tpr)
@@ -218,27 +192,24 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
                          label='thresold array ({0:0.2f})'
                                ''.format(roc_auc5_tr),
                          color='xkcd:green', linestyle='-', linewidth=2)
-
                 fpr, tpr, thresholds = metrics.roc_curve(data.ChIPTF, z)
                 rra=metrics.auc(fpr, tpr)
                 plt.plot(fpr, tpr, 
                          label='random ({0:0.2f})'
                                ''.format(rra),
                          color='pink', linestyle='-', linewidth=2)
-
                 plt.xlabel('False Positive Rate')
                 plt.ylabel('True Positive Rate')
                 plt.title('C. AUROC')
                 plt.legend(loc="best")#,bbox_to_anchor=(1.75,1), title="E.")
                 plt.subplots_adjust(wspace=.5)
-
                 plt.subplot(2, 2, 4)
                 precision, recall, thresholds = metrics.precision_recall_curve(data.ChIPTF, data.weight)
                 roc_auc3=metrics.average_precision_score(data.ChIPTF, data.weight)
-                plt.plot(recall,precision, 
-                         label='Motif (avg Prec = {0:0.2f})'
-                               ''.format(roc_auc3),
-                         color='k', linestyle=':', linewidth=4)
+                PrecisionRecallDisplay(precision=precision, recall=recall).plot()
+                         # label='Motif (avg Prec = {0:0.2f})'
+                         #       ''.format(roc_auc3),
+                         # color='k', linestyle=':', linewidth=4)
                 rpwmp=np.random.permutation(data.weight)
                 precision, recall, thresholds = metrics.precision_recall_curve(data.ChIPTF, rpwmp)
                 rand_auc3=metrics.average_precision_score(data.ChIPTF, rpwmp)
@@ -246,7 +217,6 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
                          label='shuf Motif ({0:0.2f})'
                                ''.format(rand_auc3),
                          color='xkcd:light grey', linestyle='-', linewidth=2)
-
                 precision, recall, thresholds = metrics.precision_recall_curve(data.ChIPTF, data.wgbs)
                 roc_auc4=metrics.average_precision_score(data.ChIPTF, data.wgbs)
                 plt.plot(recall,precision, 
@@ -260,7 +230,6 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
                          label='shuf WGBS ({0:0.2f})'
                                ''.format(rand_auc4),
                          color='xkcd:light blue', linestyle='-', linewidth=2)
-
                 precision, recall, thresholds = metrics.precision_recall_curve(data.ChIPTF, data.array)
                 roc_auc6=metrics.average_precision_score(data.ChIPTF, data.array)
                 plt.plot(recall,precision, 
@@ -280,14 +249,12 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
                          label='threshold WGBS ({0:0.2f})'
                                ''.format(roc_auc4_tr),
                          color='xkcd:red', linestyle='-', linewidth=2)
-
                 precision, recall, thresholds = metrics.precision_recall_curve(dataxxx.ChIPTF, dataxxx.array)
                 roc_auc6_tr=metrics.average_precision_score(dataxxx.ChIPTF, dataxxx.array)
                 plt.plot(recall,precision, 
                          label='threshold array ({0:0.2f})'
                                ''.format(roc_auc6_tr),
                          color='xkcd:green', linestyle='-', linewidth=2)
-
         #         randrand=np.random.rand(data.array)
                 precision, recall, thresholds = metrics.precision_recall_curve(data.ChIPTF, z)
                 rr=metrics.average_precision_score(data.ChIPTF, z)
@@ -295,7 +262,6 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
                          label='random ({0:0.2f})'
                                ''.format(rr),
                          color='pink', linestyle='-', linewidth=2)
-
                 plt.plot([1, 0], [0, 1], 'k--')
                 plt.xlabel('Recall or TPR')
                 plt.ylabel('Precision')
@@ -310,14 +276,12 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
                     zzz=df2[df2['start']==start]
                     if zzz.count!=1:
                         yyy=[np.abs(x - y) for i,x in enumerate(zzz.array) for j,y in enumerate(zzz.array) if i != j]
-
                     # zzzz=df4[df4['start']==start] ##not acutally capturing ChIP info in loops below
                     # if zzzz.count!=1:
                     #     yyyy=[np.abs(x - y) for i,x in enumerate(zzzz.wgbs) for j,y in enumerate(zzzz.array) if i != j]
                     zzzz=data[data['start']==start] ##running on ungrouped data will be slower but still accurate
                     if zzzz.count!=1:
                         yyyy=[np.abs(x - y) for i,x in enumerate(zzzz.ChIPTF) for j,y in enumerate(zzzz.ChIPTF) if i != j]
-
                     table2.append(np.mean(yy))
                     tmpTBL2.append(len(zz))#/np.math.factorial(len(yy)))
                     tbl.append(np.mean(yyy))
@@ -334,7 +298,6 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
                 wg = pd.concat([pd.DataFrame(table2),pd.DataFrame(tmpTBL2)],axis=1,sort=False)
                 ar = pd.concat([pd.DataFrame(tbl),pd.DataFrame(tmpTBL)],axis=1,sort=False)
                 chi = pd.concat([pd.DataFrame(tblC),pd.DataFrame(tmpTBLC)],axis=1,sort=False)
-
                 ar['type']='array'
                 wg['type']='wgbs'
                 chi['type']='ChIPTF'
@@ -349,8 +312,6 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
                     data=result,scale="area",
                     height=12, aspect=1,cut=0)
                 sns.despine(left=True)
-
-
                 plt.legend(loc="best")#,bbox_to_anchor=(-1,0))
                 plt.xlabel('motif hits')
                 plt.ylabel('avg abs pair-diff')
@@ -365,7 +326,6 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
         #         fn = mcm[1, 0]
         #         fp = mcm[0, 1]
         #         mcc1= np.divide((tp* tn - fp * fn), np.sqrt((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn)))
-
         #     #     jj=np.where(np.array(data.ChIPTF).reshape(1,-1)>.5,1,0)
         #         zz=np.where(np.array(data.wgbs).reshape(1,-1)>.5,1,0)
         #         mcm2 = metrics.confusion_matrix(j.ravel(),zz.ravel())
@@ -374,7 +334,6 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
         #         fn2 = mcm2[1, 0]
         #         fp2 = mcm2[0, 1]
         #         mcc2= np.divide((tp2* tn2 - fp2 * fn2), np.sqrt((tp2+fp2)*(tp2+fn2)*(tn2+fp2)*(tn2+fn2)))
-
             #     jjj=np.where(np.array(data.array).reshape(1,-1)>.5,1,0)
         #         zzz=np.where(np.array(data.array).reshape(1,-1)>.5,1,0)
         #         mcm3 = metrics.confusion_matrix(j.ravel(),zzz.ravel())
@@ -383,13 +342,9 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
         #         fn3 = mcm3[1, 0]
         #         fp3 = mcm3[0, 1]
         #         mcc3= np.divide((tp3* tn3 - fp3 * fn3), np.sqrt((tp3+fp3)*(tp3+fn3)*(tn3+fp3)*(tn3+fn3)))
-
-
-
             #     Col=trace.split('/')[6]
             #     Col1=Col.split('_')[0]
             #     Col2=Col.split('_')[1] 
-
                 Col3=roc_auc #motif auroc
                 Col4=roc_auc2 #wgbs auroc
                 Col5=roc_auc3 #motif aupr
@@ -403,7 +358,6 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
                 Coll4=rand_auc3 #motif rand aupr
                 Coll5=rand_auc4 #wgbs rand aupr
                 Coll6=rand_auc6 #array rand aupr
-
                 Coll7=roc_auc2_tr #wgbs threshold auroc
                 Coll8=roc_auc5_tr #array threshold auroc
                 Coll9=roc_auc4_tr #wgbs threshold aupr
@@ -422,7 +376,6 @@ def predScore(indir='data/MotifPipeline/sthlm_motif_5_QCbeta/red',outdir='data/M
                 Col21=np.mean(result.length)
         #         column = Col1, Col2, Col3, Col4, Col10, Col5, Col6, Col11,Col7,Col8,Col12,Col9,Col13,Col14,Col15,Col16
                 column = Col1, Col2, Col3, Col4, Col10, Col5, Col6,Col11,Col16,Col20,Col21,Col9,Col13,Col17,Col14,Col15,Col18,Coll1,Coll2,Coll3,Coll4,Coll5,Coll6,Coll7,Coll8,Coll9,Coll10
-
     #             table.append(column)
                 print('printing for'+Col1+"_"+Col2+"with depth > "+DD+", only in "+RR)
                 np.transpose(pd.DataFrame((column))).to_csv(outdir+'/'+RR+'/'+DD+'/sthlm_PRE_overall.txt',mode='a')#,header=['cell','tf','mauroc','wauroc','meauroc','maupr','waupr','meaupr','size','max_hit','mo_length'])
