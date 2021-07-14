@@ -53,7 +53,7 @@ Calculate & summarize AUROCs from intersection files
 
 ```
 
-Following this, [the jupyter notebook](https://github.com/dcolinmorgan/mili_benchmark/blob/master/notebook/v7_channing_methyl_benchmark.ipynb) processes AUROCs and figures
+Following this, [the jupyter notebook](https://github.com/dcolinmorgan/mili_benchmark/blob/master/notebook/v8_channing_methyl_benchmark.ipynb) processes AUROCs and figures
 
 Among other things, these checks are performed herewithin:
 1. Count multiple CpGs per motif region (varies per TF, ~15) with PWM hit
