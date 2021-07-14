@@ -49,7 +49,7 @@ Calculate & summarize AUROCs from intersection files
 --------------------------------------------------
 
 ```python
-   python mili_benchmark/run_predScore.py -i outdirXX -o outdirXX/test
+   python mili_benchmark/src/python/run_predScore.py -i outdirXX -o outdirXX/test
 
 ```
 
