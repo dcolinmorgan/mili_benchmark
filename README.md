@@ -24,24 +24,25 @@ The output are TF-cell specific intersections of these four data types which are
 
 IMPORTANT: bedtools must be installed in order to run. Please see https://bedtools.readthedocs.io/ for more information. 
 
-1. Separate hg38 meme file into individual motif files (730)
-1. Run FIMO with threshold=0.00001 and auto-background
-1. Convert fimo-output to bedfile output
-1. For every motif bedfile & for every cell line score motif locations 1 where ∩Ch observed, otherwise 0 within following operations: <br>
-    1. nonCG motif + ∩Ch
-        1. Input: Intersect motif locations devoid of CG to ChIP
-    1. CG motif + ∩Ch 
-        1.Input: Intersect CG containing motif to ChIP
-        1. Parameters: motif length, CG count per motif
-        1. Output: Figure SM1-SM3, Confirm baseline motif AUROC [23]
-    1. CG motif + ∩WB +∩Ch
-        1. Input: Intersect full motif with WGBS methyl-data
-        1. Parameter: sequence read depth
-        1. Output: Figure S4
-    1. CG motif + ∩WB +∩M+∩Ch
-        1. Input: Intersect full motif with methyl array data
-        1. Parameter: add +/- 0-10kb buffer sizes (Figure SM4)
-        1. Output: Main analysis (Figures 2-5, S1-S3)
+1. Separate hg38 MEME file into individual motif files (730 total PWM files)
+1. Run FIMO with threshold=0.0001
+1. Convert fimo-output to the BED format
+1. For every motif BED file and for every cell line assign motif locations (~) 1 where ChIP for the corresponding TF assayed in that cell line is also observed (otherwise 0). This data to assess prediction within the following motif subsets:
+    *  nonCG motif  <br />
+        Input: motif locations devoid of CG  <br />
+        Output: white in Figure S1  <br />
+    *  CG motif  <br />
+        Input:CG containing motif locations  <br />
+            Output: Figure S1,S2,S7, Confirm baseline motif AUROC (Glass et al. 2013) <br />
+    *  CG motif  ∩ WGBS  <br />
+        Input: motif locations with WGBS methyl-data  <br />
+        Parameters tested: sequence read depth  <br />
+        Output: Figure S4 <br />
+    *  CG motif ∩ WGBS ∩ array  <br />
+        Input: motif locations with both WGBS and methyl array data  <br />
+        Output: Figures 2, S3,S5,S6  <br />
+        Overlay Yin 2017 data (Figure 3)  <br />
+        Additional parameters tested: add +/- 0 : 10kb buffer sizes (Figure 4) 
 <space>\
 <space>
   
@@ -65,5 +66,5 @@ Among other things, these checks are performed herewithin:
 
 >Workflow figure from manuscript
 >--------------------------------------------------
->![Figure 1. Intersection schema between data modalities](https://github.com/dcolinmorgan/mili_benchmark/blob/master/figures/motif_interx_X_link_calls_v6.png)\
+>![Figure 1. Intersection schema between data modalities](https://github.com/dcolinmorgan/mili_benchmark/blob/master/figures/v3_pdf/fig1.svg)\
 > __Figure 1. Intersection schema between data modalities.__ Schematic workflow of bedtools2 intersection calls to calculate the prediction accuracy. The original motif is used as the template, onto which methylation information is supplemented/overwritten to predict ChIP-seq binding activity, where possible. Intersections: 1. Motif to WGBS, 2. Motif-WGBS to methyl array, 3. Motif+WGBS+methyl to ChIP. This narrow view is then expanded by adding buffers before and after motif sites (H0A) and methyl sites (H0B).
