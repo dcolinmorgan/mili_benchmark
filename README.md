@@ -1,7 +1,7 @@
 # Leveraging methylation information to infer TF binding
 
 >__Conclusions__: Incorporating methylation data improves TF binding inference over standard motif binding profiles, i.e., PWM p-values, and does so in a cell-type specific manner. Although most TFs do not bind to methylated promoter regions, our analysis highlights several exceptions to this rule, indicating that the role of methylation in TF binding is likely cell-type and context specific. <br>
->__Authors__: Daniel Morgan; Kimberly Glass
+>__Authors__: Daniel Morgan; Dawn DeMeo; Kimberly Glass
 
 <space>\
 <space>
@@ -47,15 +47,19 @@ IMPORTANT: bedtools must be installed in order to run. Please see https://bedtoo
 <space>
   
 Calculate & summarize AUROCs from intersection files
---------------------------------------------------
-
+---------------------
+requirements :
+numpy==1.18.1
+pandas==1.0.1
+seaborn==0.10.0
+scipy==1.4.1
 ```python
    python mili_benchmark/src/python/run_predScore.py -i outdirXX -o outdirXX/test
 
 ```
-
+    
 Following this, [the jupyter notebook](https://github.com/dcolinmorgan/mili_benchmark/blob/master/notebook/v8_channing_methyl_benchmark.ipynb) processes AUROCs and figures
-
+    
 Among other things, these checks are performed herewithin:
 1. Count multiple CpGs per motif region (varies per TF, ~15) with PWM hit
     1. Compare pairwise distances
